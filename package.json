@@ -1,0 +1,17 @@
+{
+  "name": "zenit",
+  "productName": "Zenit",
+  "version": "0.1.0-dev",
+  "description": "An extensible database administration tool",
+  "author": "Iegor Azuaga",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iiegor/zenit.git"
+  },
+  "license": "MIT",
+  "electronVersion": "0.33.9",
+  "private": true,
+  "scripts": {
+    "preinstall": "node -e 'process.exit(0)'"
+  }
+}
