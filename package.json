@@ -16,6 +16,7 @@
   "electronVersion": "0.33.9",
   "dependencies": {
     "coffee-script": "^1.8.0",
+    "fs-plus": "^2.8.1",
     "underscore-plus": "^1.6.6"
   },
   "devDependencies": {

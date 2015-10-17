@@ -1,35 +1,35 @@
-global.shellStartTime = Date.now();
+global.shellStartTime = Date.now()
 
 const app = require('app'),
   fs = require('fs'),
-  path = require('path');
+  path = require('path')
 
 function start() {
-  setupCoffeeScript();
+  setupCoffeeScript()
 
-  app.on('window-all-closed', function() {
+  app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-      app.quit();
+      app.quit()
     }
-  });
+  })
 
-  app.on('ready', function() {
-    var Application = require('./application');
-    new Application();
+  app.on('ready', () => {
+    var Application = require('./application')
+    new Application()
 
     console.log(`App load time: ${Date.now() - global.shellStartTime}ms`)
-  });
+  })
 }
 
 function setupCoffeeScript() {
-  require.extensions['.coffee'] = function(module, filePath) {
-    var CoffeeScript = require('coffee-script');
-    var coffee = fs.readFileSync(filePath, 'utf8');
+  require.extensions['.coffee'] = (module, filePath) => {
+    var CoffeeScript = require('coffee-script')
+    var coffee = fs.readFileSync(filePath, 'utf8')
 
-    var js = CoffeeScript.compile(coffee, { filename: filePath });
+    var js = CoffeeScript.compile(coffee, { filename: filePath })
 
-    module._compile(js, filePath);
+    module._compile(js, filePath)
   }
 }
 
-start();
+start()
