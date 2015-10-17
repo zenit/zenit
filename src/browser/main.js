@@ -15,8 +15,9 @@ function start() {
 
   app.on('ready', function() {
     var Application = require('./application');
+    new Application();
 
-    Application.bootstrap();
+    console.log(`App load time: ${Date.now() - global.shellStartTime}ms`)
   });
 }
 
