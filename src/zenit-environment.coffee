@@ -1,8 +1,13 @@
+React = require 'react'
+ReactDOM = require 'react-dom'
+
 Model = require './model'
 StyleManager = require './style-manager'
 ThemeManager = require './theme-manager'
 _ = require 'underscore-plus'
 {CompositeDisposable, Emitter} = require 'event-kit'
+
+ZenitElement = require './zenit-element'
 
 module.exports =
 class ZenitEnvironment extends Model
@@ -39,6 +44,8 @@ class ZenitEnvironment extends Model
     @stylesElement = @styles.buildStylesElement()
     @document.head.appendChild(@stylesElement)
 
+    @renderApplication()
+
   displayWindow: ->
     @show()
     @focus()
@@ -52,3 +59,6 @@ class ZenitEnvironment extends Model
 
   setBodyPlatformClass: ->
     @document.body.classList.add("platform-#{process.platform}")
+
+  renderApplication: ->
+    document.body.appendChild(new ZenitElement().initialize({@styles}))

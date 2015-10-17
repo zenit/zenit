@@ -6,7 +6,8 @@ var CSON = null
 
 var COMPILERS = {
   '.js': require('./babel'),
-  '.coffee': require('./coffee-script')
+  '.coffee': require('./coffee-script'),
+  '.cjsx': require('./cjsx')
 }
 
 var cacheStats = {}

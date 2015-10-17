@@ -19,6 +19,11 @@
         throw loadSettingsError
       }
 
+      if (loadSettings.devMode) {
+        var currentWindow = require('remote').getCurrentWindow()
+        currentWindow.openDevTools()
+      }
+
       setupWindow()
     } catch (error) {
       handleSetupError(error)
