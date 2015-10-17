@@ -1,0 +1,13 @@
+'menu': [
+  {
+    label: '&Zenit'
+    submenu: [
+      { label: 'Add &session', command: 'application:new-session' },
+      { label: 'E&xit', command: 'application:quit' }
+    ]
+  }
+
+  {
+    label: '&Developer'
+  }
+]

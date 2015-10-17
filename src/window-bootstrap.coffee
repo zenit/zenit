@@ -8,3 +8,4 @@ window.zenit = new ZenitEnvironment({
 })
 
 zenit.displayWindow()
+zenit.startWindow()

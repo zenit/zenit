@@ -19,6 +19,7 @@ class ApplicationWindow
       options.icon = @constructor.iconPath
 
     @browserWindow = new BrowserWindow options
+    global.zenitApplication.addWindow(this)
 
     @handleEvents()
 

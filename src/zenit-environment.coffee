@@ -2,8 +2,12 @@ React = require 'react'
 ReactDOM = require 'react-dom'
 
 Model = require './model'
+KeymapManager = require './keymap-extensions'
+MenuManager = require './menu-manager'
 StyleManager = require './style-manager'
 ThemeManager = require './theme-manager'
+
+path = require 'path'
 _ = require 'underscore-plus'
 {CompositeDisposable, Emitter} = require 'event-kit'
 
@@ -14,6 +18,9 @@ class ZenitEnvironment extends Model
   ###
   Section: Properties
   ###
+
+  # {MenuManager} instance.
+  menu: null
 
   # {ThemeManager} instance.
   themes: null
@@ -28,14 +35,19 @@ class ZenitEnvironment extends Model
   constructor: (params={}) ->
     {@applicationDelegate, @window, @document, configDirPath} = params
 
+    resourcePath = path.join(__dirname, '..')
+
     @emitter = new Emitter
+
+    @keymaps = new KeymapManager({configDirPath, resourcePath})
 
     @styles = new StyleManager({configDirPath})
     @themes = new ThemeManager({
-      configDirPath, 
-      resourcePath: process.resourcesPath,
+      configDirPath, resourcePath,
       styleManager: @styles
     })
+
+    @menu = new MenuManager({resourcePath, keymapManager: @keymaps})
 
     @themes.loadBaseStylesheets()
     @initialStyleElements = @styles.getSnapshot()
@@ -43,6 +55,8 @@ class ZenitEnvironment extends Model
 
     @stylesElement = @styles.buildStylesElement()
     @document.head.appendChild(@stylesElement)
+
+    @keymaps.loadBundledKeymaps()
 
     @renderApplication()
 
@@ -56,6 +70,9 @@ class ZenitEnvironment extends Model
   focus: ->
     @applicationDelegate.focusWindow()
     @window.focus()
+
+  startWindow: ->
+    @menu.update()
 
   setBodyPlatformClass: ->
     @document.body.classList.add("platform-#{process.platform}")
