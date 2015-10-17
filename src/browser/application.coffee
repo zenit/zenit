@@ -51,6 +51,16 @@ class Application
       win = BrowserWindow.fromWebContents(event.sender)
       @applicationMenu.update(win, template, keystrokesByCommand)
 
+  # Public: Removes the {AtomWindow} from the global window list.
+  removeWindow: (window) ->
+    if @windows.length is 1
+      @applicationMenu?.enableWindowSpecificItems(false)
+      if process.platform in ['win32', 'linux']
+        app.quit()
+        return
+    @windows.splice(@windows.indexOf(window), 1)
+
+  # Public: Adds the {AtomWindow} to the global window list.
   addWindow: (window) ->
     @windows.push window
     @applicationMenu?.addWindow(window.browserWindow)
@@ -61,3 +71,35 @@ class Application
       window.browserWindow.once 'closed', =>
         @lastFocusedWindow = null if window is @lastFocusedWindow
         window.browserWindow.removeListener 'focus', focusHandler
+
+  # Public: Executes the given command.
+  #
+  # If it isn't handled globally, delegate to the currently focused window.
+  #
+  # command - The string representing the command.
+  # args - The optional arguments to pass along.
+  sendCommand: (command, args...) ->
+    unless @emit(command, args...)
+      focusedWindow = @focusedWindow()
+      if focusedWindow?
+        focusedWindow.sendCommand(command, args...)
+      else
+        @sendCommandToFirstResponder(command)
+
+  # Translates the command into OS X action and sends it to application's first
+  # responder.
+  sendCommandToFirstResponder: (command) ->
+    return false unless process.platform is 'darwin'
+
+    switch command
+      when 'core:undo' then Menu.sendActionToFirstResponder('undo:')
+      when 'core:redo' then Menu.sendActionToFirstResponder('redo:')
+      when 'core:copy' then Menu.sendActionToFirstResponder('copy:')
+      when 'core:cut' then Menu.sendActionToFirstResponder('cut:')
+      when 'core:paste' then Menu.sendActionToFirstResponder('paste:')
+      when 'core:select-all' then Menu.sendActionToFirstResponder('selectAll:')
+      else return false
+    true
+
+  focusedWindow: ->
+    _.find @windows, (zenitWindow) -> zenitWindow.isFocused()

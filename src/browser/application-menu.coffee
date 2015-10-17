@@ -131,7 +131,7 @@ class ApplicationMenu
     template
 
   focusedWindow: ->
-    _.find global.atomApplication.windows, (atomWindow) -> atomWindow.isFocused()
+    _.find global.zenitApplication.windows, (zenitWindow) -> zenitWindow.isFocused()
 
   # Combines a menu template with the appropriate keystroke.
   #
@@ -146,7 +146,7 @@ class ApplicationMenu
       item.metadata ?= {}
       if item.command
         item.accelerator = @acceleratorForCommand(item.command, keystrokesByCommand)
-        item.click = -> global.atomApplication.sendCommand(item.command)
+        item.click = -> global.zenitApplication.sendCommand(item.command)
         item.metadata.windowSpecific = true unless /^application:/.test(item.command)
       @translateTemplate(item.submenu, keystrokesByCommand) if item.submenu
     template
