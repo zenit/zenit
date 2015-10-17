@@ -1,3 +1,10 @@
+ZenitEnvironment = require './zenit-environment'
 ApplicationDelegate = require './application-delegate'
 
-ApplicationDelegate.showWindow()
+window.zenit = new ZenitEnvironment({
+  window, document,
+  applicationDelegate: new ApplicationDelegate,
+  configDirPath: process.env.ZENIT_HOME
+})
+
+zenit.displayWindow()
