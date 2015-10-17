@@ -1,4 +1,5 @@
 app = require 'app'
+path = require 'path'
 ApplicationWindow = require './application-window'
 BrowserWindow = require 'browser-window'
 Menu = require 'menu'
@@ -12,13 +13,17 @@ class Application
 
   mainWindow: null
   applicationMenu: null
+  resourcePath: null
 
   constructor: ->
     global.zenitApplication = this
 
+    @resourcePath = path.dirname path.dirname(__dirname)
+
     @handleEvents()
     
     @mainWindow = new ApplicationWindow(
+      show: false
       title: 'Zenit'
       width: 800
       height: 600
@@ -27,12 +32,13 @@ class Application
         'subpixel-font-scaling': true
     )
 
-  render: ->
-    console.log('render!!')
-
   handleEvents: ->
     @on 'application:quit', => app.quit()
 
     ipc.on 'window-command', (event, command, args...) ->
       win = BrowserWindow.fromWebContents(event.sender)
       win.emit(command, args...)
+
+    ipc.on 'call-window-method', (event, method, args...) ->
+      win = BrowserWindow.fromWebContents(event.sender)
+      win[method](args...)

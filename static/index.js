@@ -1,12 +1,47 @@
 (function() {
   var path = require('path')
 
+  var loadSettings = null
+  var loadSettingsError = null
+
   window.onload = function () {
-    setupZenitHome()
-    setupWindow()
+    try {
+      process.on('unhandledRejection', function (error, promise) {
+        console.error('Unhandled promise rejection %o with error: %o', promise, error)
+      })
+
+      setupZenitHome()
+
+      // Normalize to make sure drive letter case is consistent on Windows
+      process.resourcesPath = path.normalize(process.resourcesPath)
+
+      if (loadSettingsError) {
+        throw loadSettingsError
+      }
+
+      setupWindow()
+    } catch (error) {
+      handleSetupError(error)
+    }
+  }
+
+  function handleSetupError (error) {
+    var currentWindow = require('remote').getCurrentWindow()
+    currentWindow.setSize(800, 600)
+    currentWindow.center()
+    currentWindow.show()
+    currentWindow.openDevTools()
+    console.error(error.stack || error)
   }
 
   function setupWindow() {
+    var CompileCache = require('../src/compile-cache')
+    CompileCache.setZenitHomeDirectory(process.env.ZENIT_HOME)
+
+    var ModuleCache = require('../src/module-cache')
+    ModuleCache.register(loadSettings)
+    ModuleCache.add(loadSettings.resourcePath)
+
     // Start the crash reporter
     require('crash-reporter').start({
       productName: 'Zenit',
@@ -15,6 +50,7 @@
       extra: {_version: require('../package.json').version}
     })
     
+    require(loadSettings.windowInitializationScript)
     require('ipc').sendChannel('window-command', 'window:loaded')
   }
 
@@ -34,7 +70,17 @@
       }
       process.env.ZENIT_HOME = zenitHome
     }
-  } 
+  }
+
+  function parseLoadSettings () {
+    var rawLoadSettings = decodeURIComponent(window.location.hash.substr(1))
+    try {
+      loadSettings = JSON.parse(rawLoadSettings)
+    } catch (error) {
+      console.error('Failed to parse load settings: ' + rawLoadSettings)
+      loadSettingsError = error
+    }
+  }
 
   function setupWindowBackground () {
     var backgroundColor = window.localStorage.getItem('zenit:window-background-color')
@@ -56,6 +102,7 @@
       }, 1000)
     }, false)
   }
-
+  
+  parseLoadSettings()
   setupWindowBackground()
 })()

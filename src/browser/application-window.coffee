@@ -1,5 +1,6 @@
 BrowserWindow = require 'browser-window'
 path = require 'path'
+url = require 'url'
 _ = require 'underscore-plus'
 {EventEmitter} = require 'events'
 
@@ -22,10 +23,20 @@ class ApplicationWindow
     @handleEvents()
 
     # Load from a settings file
-    @browserWindow.settings = {devMode: true}
-    @browserWindow.loadUrl path.resolve(__dirname, '..', '..', 'static', 'index.html')
+    loadSettings = 
+      devMode: true
+      resourcePath: global.zenitApplication.resourcePath
+      windowInitializationScript: require.resolve(path.join(global.zenitApplication.resourcePath, 'src', 'window-bootstrap'))
+
     @browserWindow.once 'window:loaded', =>
       @emit 'window:loaded'
+
+    @browserWindow.loadUrl url.format
+      protocol: 'file'
+      pathname: "#{global.zenitApplication.resourcePath}/static/index.html"
+      slashes: true
+      hash: encodeURIComponent(JSON.stringify(loadSettings))
+
     @browserWindow.focusOnWebView()
 
   handleEvents: () ->
