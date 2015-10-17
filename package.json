@@ -4,14 +4,25 @@
   "version": "0.0.1-dev",
   "description": "An extensible database administration tool",
   "author": "Iegor Azuaga",
+  "main": "./src/browser/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/iiegor/zenit.git"
   },
+  "bugs": {
+    "url": "https://github.com/iiegor/zenit/issues"
+  },
   "license": "MIT",
   "electronVersion": "0.33.9",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.33.9"
+  },
   "private": true,
   "scripts": {
-    "preinstall": "node -e 'process.exit(0)'"
+    "start": "electron ."
   }
 }
