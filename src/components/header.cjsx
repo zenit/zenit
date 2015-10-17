@@ -4,8 +4,6 @@ class Header extends React.Component
   @displayName = 'Header'
 
   render: =>
-    <div>
-      -- HEADER COMPONENT --
-    </div>
+    <span>-- HEADER COMPONENT --</span>
 
 module.exports = Header

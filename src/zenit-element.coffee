@@ -11,8 +11,6 @@ class ZenitElement extends HTMLElement
     @focus()
 
   initializeContent: ->
-    @setAttribute 'tabindex', -1
-
     @zenitHeader = document.createElement('zenit-header')
     @zenitHeader.classList.add 'zenit-header'
 
@@ -21,7 +19,16 @@ class ZenitElement extends HTMLElement
       @zenitHeader
     )
 
+    @zenitSidebar = document.createElement('zenit-sidebar')
+    @zenitSidebar.classList.add 'zenit-sidebar'
+
+    ReactDOM.render(
+      React.createElement(require './components/sidebar'),
+      @zenitSidebar
+    )
+
     @appendChild(@zenitHeader)
+    @appendChild(@zenitSidebar)
 
   initialize: ({@styles}) ->
     throw new Error("Must pass a styles parameter when initializing ZenitElements") unless @styles?
