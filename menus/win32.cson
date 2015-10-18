@@ -3,6 +3,7 @@
     label: '&Zenit'
     submenu: [
       { label: 'Add &session', command: 'application:new-session' }
+      { type: 'separator' }
       { label: 'E&xit', command: 'application:quit' }
     ]
   }

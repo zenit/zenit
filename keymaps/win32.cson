@@ -1,3 +1,6 @@
 'body':
   # Zenit Specific
   'ctrl-shift-j': 'window:toggle-dev-tools'
+
+  # Application
+  'ctrl-N': 'application:new-session'
