@@ -31,6 +31,8 @@ class Application
       title: 'Zenit'
       width: 800
       height: 600
+      'min-width': 500
+      'min-height': 400
       'web-preferences':
         'direct-write': true
         'subpixel-font-scaling': true
