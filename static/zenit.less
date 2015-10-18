@@ -83,6 +83,23 @@ zenit-header .header-inner {
       background-clip: content-box;
       text-align: center;
       border-width: 0;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 1px 0 0 #181a1f;
+      
+      .octicon {
+        position: relative;
+        top: 1px;
+        margin-right: 10px;
+        opacity: 0;
+
+        &:hover {
+          color: #fff;
+          opacity: .6;
+        }
+      }
+
+      &:hover .octicon {
+        opacity: 1;
+      }
 
       &.active, &:hover {
         background-color: @header-tab-color;
@@ -94,21 +111,10 @@ zenit-header .header-inner {
       &:active {
         background-color: darken(@header-tab-color, 1%);
       }
-
-      .octicon {
-        position: relative;
-        top: 1px;
-        margin-right: 10px;
-
-        &:hover {
-          color: #fff;
-          opacity: .6;
-        }
-      }
     }
 
     .tabs-item {
-      padding: 10px;
+      padding: 10px 10px 10px 20px;
     }
   }
 }
