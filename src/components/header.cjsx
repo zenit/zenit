@@ -22,13 +22,15 @@ class Header extends React.Component
       </ul>
 
       <div className="history-buttons">
-        <div className="history-button left active">
+        <div className="history-button left disabled">
           <span className="mega-octicon octicon-chevron-left"></span>
         </div>
 
-        <div className="history-button right">
+        <div className="history-button right disabled">
           <span className="mega-octicon octicon-chevron-right"></span>
         </div>
+
+        <span className="label">Table History</span>
       </div>
     </div>
 

@@ -125,12 +125,14 @@ zenit-header .header-inner {
     right: 0;
     display: inline-block;
     color: @header-history-buttons-text-color;
+    top: -6px; // Decrease top to show better the label
 
     .mega-octicon {
       font-size: 24px;
     }
 
     .history-button {
+      cursor: pointer;
       float: left;
       background-color: @header-history-button-color;
       padding: 0 7px;
@@ -147,10 +149,18 @@ zenit-header .header-inner {
         border-bottom-right-radius: 4px
       }
 
-      &.active {
+      &:hover:not(.disabled), &.active:not(.disabled) {
         color: @header-history-button-active-text-color;
         background: @header-history-button-active-color;
       }
+    }
+
+    .label {
+      cursor: default;
+      font-size: 12px;
+      left: 9px;
+      position: absolute;
+      bottom: 0;
     }
   }
 }
