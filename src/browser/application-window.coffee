@@ -46,6 +46,11 @@ class ApplicationWindow
     @browserWindow.focusOnWebView()
 
   sendCommand: (command, args...) ->
+    unless global.zenitApplication.sendCommandToFirstResponder(command)
+      switch command
+        when 'window:reload' then @reload()
+        when 'window:toggle-dev-tools' then @toggleDevTools()
+        when 'window:close' then @close()
     if @isWebViewFocused()
       @sendCommandToBrowserWindow(command, args...)
     else
@@ -87,3 +92,9 @@ class ApplicationWindow
   isFocused: -> @browserWindow.isFocused()
 
   isWebViewFocused: -> @browserWindow.isWebViewFocused()
+
+  toggleDevTools: -> @browserWindow.toggleDevTools()
+
+  reload: -> @browserWindow.restart()
+  
+  close: -> @browserWindow.close()

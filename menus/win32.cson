@@ -2,12 +2,15 @@
   {
     label: '&Zenit'
     submenu: [
-      { label: 'Add &session', command: 'application:new-session' },
+      { label: 'Add &session', command: 'application:new-session' }
       { label: 'E&xit', command: 'application:quit' }
     ]
   }
 
   {
     label: '&Developer'
+    submenu: [
+      { label: 'Toggle Developer &Tools', command: 'window:toggle-dev-tools' }
+    ]
   }
 ]

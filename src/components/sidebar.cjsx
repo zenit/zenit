@@ -38,6 +38,8 @@ class Sidebar extends React.Component
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
       </div>
+
+      <div className="view-resize-handle"></div>
     </div>
 
 module.exports = Sidebar
