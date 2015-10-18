@@ -1,7 +1,7 @@
 <div align="center">
   <img src="http://i.imgur.com/lpqKA9y.png">
+  <h1>zenit</h1>
 </div>
 
-# zenit
 ## License
 MIT @ [Iegor Azuaga](https://github.com/iiegor)
