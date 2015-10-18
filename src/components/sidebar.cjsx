@@ -14,6 +14,18 @@ class Sidebar extends React.Component
             <span className="octicon octicon-database"></span> Github Server (Live)
           </a>
         </li>
+
+        <li>
+          <a className="favorites-list-item blue">
+            <span className="octicon octicon-database"></span> My website (Local)
+          </a>
+        </li>
+
+        <li>
+          <a className="favorites-list-item green">
+            <span className="octicon octicon-database"></span> Wordpress site
+          </a>
+        </li>
       </ul>
     </div>
 
