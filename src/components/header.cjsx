@@ -19,6 +19,10 @@ class Header extends React.Component
           <a className="tabs-item">Github Server (Live)</a>
           <span className="octicon octicon-x"></span>
         </li>
+
+        <li className="tabs-tab new-tab">
+          <span className="octicon octicon-plus"></span>
+        </li>
       </ul>
 
       <div className="history-buttons">
