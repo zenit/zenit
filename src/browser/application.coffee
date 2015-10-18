@@ -53,7 +53,7 @@ class Application
       win = BrowserWindow.fromWebContents(event.sender)
       @applicationMenu.update(win, template, keystrokesByCommand)
 
-  # Public: Removes the {AtomWindow} from the global window list.
+  # Public: Removes the {ApplicationWindow} from the global window list.
   removeWindow: (window) ->
     if @windows.length is 1
       @applicationMenu?.enableWindowSpecificItems(false)
@@ -62,7 +62,7 @@ class Application
         return
     @windows.splice(@windows.indexOf(window), 1)
 
-  # Public: Adds the {AtomWindow} to the global window list.
+  # Public: Adds the {ApplicationWindow} to the global window list.
   addWindow: (window) ->
     @windows.push window
     @applicationMenu?.addWindow(window.browserWindow)
