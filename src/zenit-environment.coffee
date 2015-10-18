@@ -7,6 +7,8 @@ MenuManager = require './menu-manager'
 StyleManager = require './style-manager'
 ThemeManager = require './theme-manager'
 
+{getWindowLoadSettings} = require './window-load-settings-helpers'
+
 path = require 'path'
 _ = require 'underscore-plus'
 {CompositeDisposable, Emitter} = require 'event-kit'
@@ -35,7 +37,7 @@ class ZenitEnvironment extends Model
   constructor: (params={}) ->
     {@applicationDelegate, @window, @document, configDirPath} = params
 
-    resourcePath = path.join(__dirname, '..')
+    {resourcePath} = @getLoadSettings()
 
     @emitter = new Emitter
 
@@ -79,3 +81,6 @@ class ZenitEnvironment extends Model
 
   renderApplication: ->
     document.body.appendChild(new ZenitElement().initialize({@styles}))
+
+  getLoadSettings: ->
+    getWindowLoadSettings()

@@ -26,7 +26,7 @@ class Application
 
     @handleEvents()
     
-    new ApplicationWindow(
+    options =
       show: false
       title: 'Zenit'
       width: 800
@@ -36,7 +36,11 @@ class Application
       'web-preferences':
         'direct-write': true
         'subpixel-font-scaling': true
-    )
+
+    # Create a frameless window, see http://electron.atom.io/docs/v0.34.0/api/frameless-window/
+    options.frame = false if process.platform is 'win32'
+
+    new ApplicationWindow options
 
   handleEvents: ->
     @on 'application:quit', => app.quit()

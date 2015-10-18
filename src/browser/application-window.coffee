@@ -28,6 +28,7 @@ class ApplicationWindow
 
     # Load from a settings file
     loadSettings = 
+      frameless: !options.frame
       appVersion: app.getVersion()
       devMode: true
       resourcePath: global.zenitApplication.resourcePath

@@ -1,16 +1,23 @@
-ipc = require 'ipc'
-
 React = require 'react'
 ReactDOM = require 'react-dom'
 
+{getWindowLoadSettings} = require './window-load-settings-helpers'
+
 module.exports =
 class ZenitElement extends HTMLElement
-  globalTextEditorStyleSheet: null
-
-  attachedCallback: ->
-    @focus()
-
   initializeContent: ->
+    {frameless} = getWindowLoadSettings()
+
+    if frameless
+      @zenitTitlebar = document.createElement('zenit-titlebar')
+      @zenitTitlebar.classList.add 'zenit-titlebar'
+
+      ReactDOM.render(
+        React.createElement(require './components/titlebar'), 
+        @zenitTitlebar
+      )
+      @appendChild(@zenitTitlebar)
+
     @zenitHeader = document.createElement('zenit-header')
     @zenitHeader.classList.add 'zenit-header'
 
@@ -18,6 +25,7 @@ class ZenitElement extends HTMLElement
       React.createElement(require './components/header'), 
       @zenitHeader
     )
+    @appendChild(@zenitHeader)
 
     @zenitSidebar = document.createElement('zenit-sidebar')
     @zenitSidebar.classList.add 'zenit-sidebar'
@@ -26,8 +34,6 @@ class ZenitElement extends HTMLElement
       React.createElement(require './components/sidebar'),
       @zenitSidebar
     )
-
-    @appendChild(@zenitHeader)
     @appendChild(@zenitSidebar)
 
   initialize: ({@styles}) ->

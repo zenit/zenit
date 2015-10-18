@@ -5,9 +5,7 @@ class Header extends React.Component
 
   render: =>
     <div className="header-inner">
-      <div className="logo">
-        <a className="logo-link"></a>
-      </div>
+      {@_renderLogo()}
 
       <ul className="list list-reset tabs-list">
         <li className="tabs-tab active">
@@ -26,16 +24,21 @@ class Header extends React.Component
       </ul>
 
       <div className="history-buttons">
-        <div className="history-button left disabled">
+        <div className="history-button left active">
           <span className="mega-octicon octicon-chevron-left"></span>
         </div>
 
         <div className="history-button right disabled">
           <span className="mega-octicon octicon-chevron-right"></span>
         </div>
-
-        <span className="label">Table History</span>
       </div>
     </div>
+
+  _renderLogo: ->
+    if process.platform is not 'win32'
+      <div className="logo">
+        <a className="logo-link"></a>
+      </div>
+    else return <div></div>
 
 module.exports = Header
