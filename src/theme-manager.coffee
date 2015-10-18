@@ -35,7 +35,6 @@ class ThemeManager
       throw new Error("Could not find a file at path '#{stylesheetPath}'")
 
   loadBaseStylesheets: ->
-    @requireStylesheet('../static/bootstrap')
     @reloadBaseStylesheets()
 
   reloadBaseStylesheets: ->
