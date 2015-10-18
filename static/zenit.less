@@ -33,6 +33,7 @@ zenit-container {
     left: 0;
     right: 0;
     color: @header-text-color;
+    box-shadow: @header-shadow;
   }
 
   zenit-sidebar {
@@ -102,6 +103,20 @@ zenit-sidebar .sidebar-inner {
         &:hover {
           background-color: darken(#C2EC7F, 5%);
         }
+      }
+    }
+  }
+
+  .bottom-links {
+    position: absolute;
+    bottom: 7px;
+
+    & > span {
+      cursor: pointer;
+      font-size: 15px;
+
+      &:hover {
+        opacity: .9
       }
     }
   }
