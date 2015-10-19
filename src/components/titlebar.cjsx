@@ -7,10 +7,12 @@ class Titlebar extends React.Component
   # TODO: Render application menu
   render: =>
     <div className="titlebar-inner">   
+      {### NOTE: Currently this is unnecessary, keeping it in case is needed.
       <ul className="list list-reset menu-list">
         <li className="menu-item">Zenit</li>
         <li className="menu-item">Developer</li>
       </ul>
+      ###}
 
       <div className="actions-wrapper">
         <ul className="actions-list">
