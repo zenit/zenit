@@ -4,7 +4,7 @@ class View extends React.Component
   @displayName = 'View'
 
   render: =>
-    <div>
+    <div className="view-inner">
       View content
     </div>
 
