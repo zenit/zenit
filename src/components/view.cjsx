@@ -5,7 +5,10 @@ class View extends React.Component
 
   render: =>
     <div className="view-inner">
-      View content
+      {# Custom element, use normal class tag #}
+      <zenit-axis class="vertical">
+        Content!
+      </zenit-axis>
     </div>
 
 module.exports = View

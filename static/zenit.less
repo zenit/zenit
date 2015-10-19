@@ -168,9 +168,17 @@ zenit-root {
     height: 100%;
   }
 
-  zenit-axis.horizontal {
-    display: -webkit-flex;
-    height: 100%;
+  zenit-axis {
+    &.horizontal {
+      display: -webkit-flex;
+      height: 100%;
+    }
+
+    &.vertical {
+      display: -webkit-flex;
+      -webkit-flex: 1;
+      -webkit-flex-flow: column;
+    }
   }
 
   zenit-view {
