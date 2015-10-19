@@ -19,5 +19,8 @@ class ApplicationDelegate
   minimizeWindow: ->
     ipc.send("call-window-method", "minimize")
 
+  restoreWindow: ->
+    ipc.send("call-window-method", "restore")
+
   beep: ->
     shell.beep()
