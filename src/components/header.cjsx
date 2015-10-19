@@ -35,7 +35,7 @@ class Header extends React.Component
     </div>
 
   _renderLogo: ->
-    if process.platform is not 'win32'
+    if process.platform != 'win32'
       <div className="logo">
         <a className="logo-link"></a>
       </div>
