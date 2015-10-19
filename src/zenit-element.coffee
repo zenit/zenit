@@ -7,7 +7,7 @@ module.exports =
 class ZenitElement extends HTMLElement
   initializeContent: ->
     {frameless} = getWindowLoadSettings()
-
+    
     if frameless
       @zenitTitlebar = document.createElement('zenit-titlebar')
       @zenitTitlebar.classList.add 'zenit-titlebar'

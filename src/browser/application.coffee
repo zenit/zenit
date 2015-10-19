@@ -38,7 +38,7 @@ class Application
         'subpixel-font-scaling': true
 
     # Create a frameless window, see http://electron.atom.io/docs/v0.34.0/api/frameless-window/
-    options.frame = false if process.platform is 'win32'
+    options.frame = !(process.platform is 'win32')
 
     new ApplicationWindow options
 
