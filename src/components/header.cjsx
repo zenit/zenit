@@ -13,6 +13,10 @@ class Header extends React.Component
 
       <ul className="list list-reset tabs-list">
         {@_renderMenuItems()}
+        
+        <li className="tabs-tab new-tab">
+          <span className="octicon octicon-plus"></span>
+        </li>
       </ul>
 
       <div className="history-buttons">
