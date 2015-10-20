@@ -11,6 +11,8 @@
 
   window.onload = function () {
     try {
+      var startTime = Date.now()
+
       process.on('unhandledRejection', function (error, promise) {
         console.error('Unhandled promise rejection %o with error: %o', promise, error)
       })
@@ -30,8 +32,16 @@
       }
 
       setupWindow()
+      setLoadTime(Date.now() - startTime)
     } catch (error) {
       handleSetupError(error)
+    }
+  }
+
+  function setLoadTime (loadTime) {
+    if (global.zenit) {
+      global.zenit.loadTime = loadTime
+      console.log('Window load time: ' + global.zenit.getWindowLoadTime() + 'ms')
     }
   }
 

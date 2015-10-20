@@ -36,6 +36,7 @@ class ZenitEnvironment extends Model
   constructor: (params={}) ->
     {@applicationDelegate, @window, @document, configDirPath} = params
 
+    @loadTime = null
     {resourcePath} = @getLoadSettings()
 
     @keymaps = new KeymapManager({configDirPath, resourcePath})
@@ -73,11 +74,18 @@ class ZenitEnvironment extends Model
   startWindow: ->
     @menu.update()
 
+  # Add platform class to body.
   setBodyPlatformClass: ->
     @document.body.classList.add("platform-#{process.platform}")
 
+  # Render application elements.
   renderApplication: ->
     document.body.appendChild(new ZenitElement().initialize({@styles}))
 
+  # Get the load settings for the current window.
   getLoadSettings: ->
     getWindowLoadSettings()
+
+  # Get the time taken to completely load the current window.
+  getWindowLoadTime: ->
+    @loadTime
