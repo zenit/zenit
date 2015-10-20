@@ -15,6 +15,9 @@ class ApplicationDelegate
 
   maximizeWindow: ->
     ipc.send("call-window-method", "maximize")
+
+  isWindowMaximized: ->
+    remote.getCurrentWindow().isMaximized()
   
   minimizeWindow: ->
     ipc.send("call-window-method", "minimize")

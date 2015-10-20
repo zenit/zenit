@@ -4,20 +4,29 @@ ApplicationDelegate = new (require '../application-delegate')
 class Titlebar extends React.Component
   @displayName = 'Titlebar'
 
+  constructor: ->
+    @state =
+      classList: 'max'
+
   # TODO: Render application menu
   render: =>
-    <div className="titlebar-inner">   
-      {### NOTE: Currently this is unnecessary, keeping it in case is needed.
-      <ul className="list list-reset menu-list">
-        <li className="menu-item">Zenit</li>
-        <li className="menu-item">Developer</li>
-      </ul>
-      ###}
-
+    <div className="titlebar-inner">
       <div className="actions-wrapper">
         <ul className="actions-list">
           <li className="actions-item" onClick={ApplicationDelegate.minimizeWindow}><div className="img min"></div></li>
-          <li className="actions-item" onClick={ApplicationDelegate.maximizeWindow}><div className="img max"></div></li>
+          <li className="actions-item" onClick={=>
+            console.log ApplicationDelegate.isWindowMaximized()
+            if ApplicationDelegate.isWindowMaximized()
+              @setState
+                classList: 'max'
+
+              ApplicationDelegate.restoreWindow()
+            else
+              @setState
+                classList: 'max restore'
+
+              ApplicationDelegate.maximizeWindow()
+          }><div className={"img " + @state.classList}></div></li>
           <li className="actions-item" onClick={ApplicationDelegate.closeWindow}><div className="img close"></div></li>
         </ul>
       </div>
