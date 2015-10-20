@@ -73,6 +73,4 @@ class ZenitElement extends HTMLElement
 
     this
 
-  getModel: -> @model
-
 module.exports = ZenitElement = document.registerElement 'zenit-root', prototype: ZenitElement.prototype
