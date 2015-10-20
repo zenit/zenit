@@ -3,7 +3,6 @@ remote = require 'remote'
 shell = require 'shell'
 
 module.exports =
-class ApplicationDelegate
   showWindow: ->
     ipc.send('call-window-method', 'show')
 

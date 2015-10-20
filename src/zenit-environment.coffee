@@ -1,12 +1,10 @@
-React = require 'react'
-ReactDOM = require 'react-dom'
-
 Model = require './model'
 KeymapManager = require './keymap-extensions'
 MenuManager = require './menu-manager'
 StyleManager = require './style-manager'
 ThemeManager = require './theme-manager'
 
+ApplicationDelegate = require './application-delegate'
 {getWindowLoadSettings} = require './window-load-settings-helpers'
 
 path = require 'path'
@@ -34,7 +32,7 @@ class ZenitEnvironment extends Model
   ###
 
   constructor: (params={}) ->
-    {@applicationDelegate, @window, @document, configDirPath} = params
+    {@window, @document, configDirPath} = params
 
     @loadTime = null
     {resourcePath} = @getLoadSettings()
@@ -65,10 +63,10 @@ class ZenitEnvironment extends Model
     @focus()
 
   show: ->
-    @applicationDelegate.showWindow()
+    ApplicationDelegate.showWindow()
 
   focus: ->
-    @applicationDelegate.focusWindow()
+    ApplicationDelegate.focusWindow()
     @window.focus()
 
   startWindow: ->

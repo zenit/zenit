@@ -8,7 +8,7 @@ class View extends React.Component
       stack: [
         require '../views/get-started'
       ]
-      
+
   render: =>
     <div className="view-inner">
       {# Custom element, use normal class tag #}
