@@ -15,7 +15,6 @@ class Titlebar extends React.Component
         <ul className="actions-list">
           <li className="actions-item" onClick={ApplicationDelegate.minimizeWindow}><div className="img min"></div></li>
           <li className="actions-item" onClick={=>
-            console.log ApplicationDelegate.isWindowMaximized()
             if ApplicationDelegate.isWindowMaximized()
               @setState
                 classList: 'max'
