@@ -8,7 +8,7 @@ class Header extends React.Component
       {@_renderLogo()}
 
       <ul className="list list-reset tabs-list">
-        <li className="tabs-tab active">
+        <li className="tabs-tab active connected">
           <a className="tabs-item">MAMP/wordpress</a>
           <span className="octicon octicon-x"></span>
         </li>
