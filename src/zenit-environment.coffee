@@ -11,7 +11,6 @@ ThemeManager = require './theme-manager'
 
 path = require 'path'
 _ = require 'underscore-plus'
-{CompositeDisposable, Emitter} = require 'event-kit'
 
 ZenitElement = require './zenit-element'
 
@@ -38,8 +37,6 @@ class ZenitEnvironment extends Model
     {@applicationDelegate, @window, @document, configDirPath} = params
 
     {resourcePath} = @getLoadSettings()
-
-    @emitter = new Emitter
 
     @keymaps = new KeymapManager({configDirPath, resourcePath})
 

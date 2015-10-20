@@ -25,20 +25,26 @@ class Application
     @applicationMenu = new ApplicationMenu()
 
     @handleEvents()
+
+    # Create a frameless window
+    # See http://electron.atom.io/docs/v0.34.0/api/frameless-window/
+    if process.platform is 'win32'
+      frame = false
+    else
+      frame = true
     
     options =
       show: false
       title: 'Zenit'
       width: 800
       height: 600
+      frame: frame
+      'standard-window': frame
       'min-width': 500
       'min-height': 400
       'web-preferences':
         'direct-write': true
         'subpixel-font-scaling': true
-
-    # Create a frameless window, see http://electron.atom.io/docs/v0.34.0/api/frameless-window/
-    options.frame = !(process.platform is 'win32')
 
     new ApplicationWindow options
 

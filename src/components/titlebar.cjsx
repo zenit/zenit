@@ -1,5 +1,5 @@
 React = require 'react'
-ApplicationDelegate = new (require '../application-delegate')
+ApplicationDelegate = require '../application-delegate'
 
 class Titlebar extends React.Component
   @displayName = 'Titlebar'
