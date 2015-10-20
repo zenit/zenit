@@ -20,11 +20,22 @@ class ZenitElement extends HTMLElement
       @appendChild(@zenitTitlebar)
 
     # Header
+    # TODO: Get menu items from last session
     @zenitHeader = document.createElement('zenit-header')
     @zenitHeader.classList.add 'zenit-header'
 
     ReactDOM.render(
-      React.createElement(require './components/header'), 
+      React.createElement((require './components/header'), {
+        menuItems: [
+          {
+            name: 'MAMP/wordpress'
+          },
+
+          {
+            name: 'Github Server (Live)'
+          }
+        ]
+      }), 
       @zenitHeader
     )
     @appendChild(@zenitHeader)
