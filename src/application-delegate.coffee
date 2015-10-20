@@ -1,8 +1,11 @@
 ipc = require 'ipc'
 remote = require 'remote'
 shell = require 'shell'
+{Emitter} = require 'event-kit'
 
 module.exports =
+  emitter: new Emitter
+
   showWindow: ->
     ipc.send('call-window-method', 'show')
 

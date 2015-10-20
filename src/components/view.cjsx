@@ -1,4 +1,6 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
+ApplicationDelegate = require '../application-delegate'
 
 class View extends React.Component
   @displayName = 'View'
@@ -8,6 +10,10 @@ class View extends React.Component
       stack: [
         require '../views/get-started'
       ]
+
+  componentDidMount: ->
+    ApplicationDelegate.emitter.on 'inject-view', (view) =>
+      @_onStackChanged(if typeof view is 'object' then view else [view])
 
   render: =>
     <div className="view-inner">
@@ -24,6 +30,6 @@ class View extends React.Component
       <ContentView key={"#{index}:#{ContentView.id}"} />
 
   _onStackChanged: (stack) =>
-    @setState(stack)
+    @setState stack: stack
 
 module.exports = View

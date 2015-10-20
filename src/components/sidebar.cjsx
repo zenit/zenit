@@ -1,4 +1,7 @@
 React = require 'react'
+ApplicationDelegate = require '../application-delegate'
+
+ConnectionView = require '../views/connection'
 
 class Sidebar extends React.Component
   @displayName = 'Sidebar'
@@ -6,9 +9,12 @@ class Sidebar extends React.Component
   fireItemAction: ->
     alert 'Item fired!'
 
+  handleQuickConnect: ->
+    ApplicationDelegate.emitter.emit('inject-view', ConnectionView)
+
   render: =>
     <div className="sidebar-inner">
-      <a className="quick-connect-link"><span className="octicon octicon-zap"></span> Quick connect</a>
+      <a className="quick-connect-link" onClick={@handleQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
 
       <span className="divider"></span>
 
