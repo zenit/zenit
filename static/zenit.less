@@ -254,6 +254,8 @@ zenit-header .header-inner {
         top: 1px;
         margin-right: 10px;
         opacity: 0;
+        transform: scale(0);
+        transition: transform .08s;
 
         &:hover {
           color: #fff;
@@ -263,6 +265,8 @@ zenit-header .header-inner {
 
       &:hover .octicon {
         opacity: .8;
+        transform: scale(1);
+        transition-duration: .16s;
       }
 
       &.active, &:hover {
