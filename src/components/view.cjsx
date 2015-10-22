@@ -6,6 +6,7 @@ class View extends React.Component
   @displayName = 'View'
 
   constructor: (@props) ->
+    @cache = []
     @state =
       stack: [
         require '../views/get-started'
@@ -30,6 +31,13 @@ class View extends React.Component
       <ContentView key={"#{index}:#{ContentView.id}"} />
 
   _onStackChanged: (stack) =>
-    @setState stack: stack
+    tempStack = []
+
+    stack.map (viewName) =>
+      @cache[viewName] ?= require "../views/#{viewName}"
+
+      tempStack.push @cache[viewName]
+
+    @setState stack: tempStack
 
 module.exports = View

@@ -1,20 +1,12 @@
 React = require 'react'
 ApplicationDelegate = require '../application-delegate'
 
-ConnectionView = require '../views/connection'
-
 class Sidebar extends React.Component
   @displayName = 'Sidebar'
 
-  fireItemAction: ->
-    alert 'Item fired!'
-
-  handleQuickConnect: ->
-    ApplicationDelegate.emitter.emit('inject-view', ConnectionView)
-
   render: =>
     <div className="sidebar-inner">
-      <a className="quick-connect-link" onClick={@handleQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
+      <a className="quick-connect-link" onClick={@_handleQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
 
       <span className="divider"></span>
 
@@ -33,7 +25,7 @@ class Sidebar extends React.Component
         </li>
 
         <li>
-          <a className="favorites-list-item green" onClick={@fireItemAction}>
+          <a className="favorites-list-item green">
             <span className="octicon octicon-database"></span> Wordpress site
           </a>
         </li>
@@ -43,9 +35,17 @@ class Sidebar extends React.Component
         <span className="octicon octicon-gear"></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
+
+        <span className="octicon octicon-info" onClick={@_handleInfo}></span>
       </div>
 
       <div className="view-resize-handle"></div>
     </div>
+
+  _handleQuickConnect: ->
+    ApplicationDelegate.emitter.emit('inject-view', 'connection')
+
+  _handleInfo: ->
+    ApplicationDelegate.emitter.emit('inject-view', 'about')
 
 module.exports = Sidebar
