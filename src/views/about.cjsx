@@ -8,7 +8,7 @@ class AboutView extends React.Component
   render: =>
     <div className="view about centered">
       <div className="logo">
-        <span className="version">test</span>
+        <span className="version">{getWindowLoadSettings().appVersion}</span>
       </div>
     </div>
 
