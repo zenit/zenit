@@ -14,6 +14,7 @@ class ApplicationWindow
 
   browserWindow: null
   loaded: null
+  sequelize: null
 
   constructor: (options={}) ->
     # Don't set icon on Windows so the exe's ico will be used as window and
@@ -44,7 +45,7 @@ class ApplicationWindow
       slashes: true
       hash: encodeURIComponent(JSON.stringify(loadSettings))
 
-    @browserWindow.focusOnWebView()
+    @browserWindow.focusOnWebView() if loadSettings.devMode
 
   sendCommand: (command, args...) ->
     unless global.zenitApplication.sendCommandToFirstResponder(command)

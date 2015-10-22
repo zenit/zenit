@@ -32,7 +32,7 @@ class Application
       frame = false
     else
       frame = true
-    
+
     options =
       show: false
       title: 'Zenit'

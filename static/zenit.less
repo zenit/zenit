@@ -36,6 +36,7 @@ zenit-root {
     display: block;
     background-color: @header-color;
     margin-top: 3px; // Make able to resize the top side
+    margin-bottom: 1px; // Prevent tab:hover when moving the cursor from header to titlebar
     -webkit-app-region: drag;
     -webkit-user-select: none; // ?
     height: 26px;
@@ -455,4 +456,69 @@ zenit-sidebar .sidebar-inner {
 zenit-view .view-inner {
   background-color: @view-color;
   width: 100%;
+}
+
+.view {
+  &.connection {
+    padding: 0 45px;
+
+    .title {
+      font-weight: bold;
+    }
+
+    .container {
+      background-color: #E4E4E4;
+      padding: 12px 51px;
+      text-align: left;
+
+      input[type="text"],
+      input[type="password"] {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .btn.btn-connect {
+      margin: 12px 0;
+      float: right;
+    }
+  }
+
+  &.centered {
+    text-align: center;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.06);
+
+  &:focus {
+    outline: 0;
+    box-shadow: none
+  }
+}
+
+.btn.btn-connect {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+  border-color: #388df8 #388df8 #0866dc;
+  background-color: #6eb4f7;
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#6eb4f7),color-stop(100%,#1a82fb));
+  background-image: -webkit-linear-gradient(top,#6eb4f7 0,#1a82fb 100%);
+  background-image: linear-gradient(to bottom,#6eb4f7 0,#1a82fb 100%);
+
+  &:active {
+    background-color: #3e9bf4;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#3e9bf4),color-stop(100%,#0469de));
+    background-image: -webkit-linear-gradient(top,#3e9bf4 0,#0469de 100%);
+    background-image: linear-gradient(to bottom,#3e9bf4 0,#0469de 100%)
+  }
 }
