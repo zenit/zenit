@@ -460,6 +460,8 @@ zenit-sidebar .sidebar-inner {
 zenit-view .view-inner {
   background-color: @view-color;
   width: 100%;
+  cursor: default;
+  -webkit-user-select: none;
 }
 
 .view {
@@ -511,6 +513,7 @@ zenit-view .view-inner {
   border: 1px solid transparent;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0,0,0,.06);
+  cursor: pointer;
 
   &:focus {
     outline: 0;
