@@ -1,0 +1,11 @@
+{
+  "name": "zenit-bundled-apm",
+  "description": "Zenit's bundled apm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iiegor/zenit.git"
+  },
+  "dependencies": {
+    "atom-package-manager": "1.4.0"
+  }
+}
