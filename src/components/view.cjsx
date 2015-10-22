@@ -9,6 +9,7 @@ class View extends React.Component
     @cache = []
     @state =
       stack: [
+        # TODO: Check if it's the first time and render a view based on this
         require '../views/get-started'
       ]
 
