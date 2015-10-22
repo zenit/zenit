@@ -463,6 +463,10 @@ zenit-view .view-inner {
 }
 
 .view {
+  &.centered {
+    text-align: center;
+  }
+
   &.connection {
     padding: 0 45px;
 
@@ -488,8 +492,12 @@ zenit-view .view-inner {
     }
   }
 
-  &.centered {
-    text-align: center;
+  &.about {
+    .logo {
+      .version {
+        font-size: 15px;
+      }
+    }
   }
 }
 

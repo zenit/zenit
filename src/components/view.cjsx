@@ -2,16 +2,22 @@ React = require 'react'
 ReactDOM = require 'react-dom'
 ApplicationDelegate = require '../application-delegate'
 
+_ = require 'underscore-plus'
+
 class View extends React.Component
   @displayName = 'View'
 
   constructor: (@props) ->
+    @lastView = localStorage.getItem('zenit:last-view').split(',')
     @cache = []
+
     @state =
       stack: [
-        # TODO: Check if it's the first time and render a view based on this
         require '../views/get-started'
       ]
+
+  componentWillMount: ->
+    @_onStackChanged(@lastView) if @lastView.length > 0
 
   componentDidMount: ->
     ApplicationDelegate.emitter.on 'inject-view', (view) =>
@@ -28,6 +34,7 @@ class View extends React.Component
   _injectStackComponents: =>
     return <span>There is no view in the stack</span> unless @state.stack.length > 0
 
+    # Render
     @state.stack.map (ContentView, index) =>
       <ContentView key={"#{index}:#{ContentView.id}"} />
 
@@ -39,6 +46,10 @@ class View extends React.Component
 
       tempStack.push @cache[viewName]
 
+    # Save session views
+    localStorage.setItem('zenit:last-view', stack.join(','))
+
+    # Update state
     @setState stack: tempStack
 
 module.exports = View
