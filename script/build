@@ -5,8 +5,8 @@ var path = require('path');
 
 process.chdir(path.dirname(__dirname));
 
-//cp.safeExec('node script/bootstrap', function() {
+cp.safeExec('node script/install', function() {
   // build/node_modules/.bin/grunt "$@"
   var args = process.argv.slice(2);
   runGrunt(args, process.exit);
-//});
+});
