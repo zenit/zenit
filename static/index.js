@@ -83,7 +83,7 @@
       } else {
         home = process.env.HOME
       }
-      var zenitHome = path.join(home, '.atom')
+      var zenitHome = path.join(home, '.zenit')
       try {
         zenitHome = fs.realpathSync(zenitHome)
       } catch (error) {

@@ -391,6 +391,8 @@ zenit-sidebar .sidebar-inner {
 
   .favorites-list {
     margin-top: 8px;
+    overflow: auto;
+    height: 100%;
 
     .favorites-list-item {
       cursor: pointer;
@@ -536,4 +538,20 @@ zenit-view .view-inner {
     background-image: -webkit-linear-gradient(top,#3e9bf4 0,#0469de 100%);
     background-image: linear-gradient(to bottom,#3e9bf4 0,#0469de 100%)
   }
+}
+
+zenit-root /deep/ ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+zenit-root /deep/ ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+zenit-root /deep/ ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  border: 3px solid #E0E0E0;
+  background: #6A717C;
+  background-clip: content-box;
 }

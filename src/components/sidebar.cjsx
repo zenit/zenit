@@ -32,11 +32,11 @@ class Sidebar extends React.Component
       </ul>
 
       <div className="bottom-links">
-        <span className="octicon octicon-gear"></span>
+        <span className="octicon octicon-gear" onClick={() -> ApplicationDelegate.shell('openExternal', process.env.ZENIT_HOME)}></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
 
-        <span className="octicon octicon-info" onClick={@_handleInfo}></span>
+        <span className="octicon octicon-info" onClick={() -> ApplicationDelegate.emitter.emit('inject-view', 'about')}></span>
       </div>
 
       <div className="view-resize-handle"></div>
@@ -44,8 +44,5 @@ class Sidebar extends React.Component
 
   _handleQuickConnect: ->
     ApplicationDelegate.emitter.emit('inject-view', 'connection')
-
-  _handleInfo: ->
-    ApplicationDelegate.emitter.emit('inject-view', 'about')
 
 module.exports = Sidebar

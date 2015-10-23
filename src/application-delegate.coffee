@@ -27,5 +27,8 @@ module.exports =
   restoreWindow: ->
     ipc.send("call-window-method", "restore")
 
+  shell: (method, args...) ->
+    shell[method](args...)
+
   beep: ->
     shell.beep()
