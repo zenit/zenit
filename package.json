@@ -36,6 +36,7 @@
   "packageDependencies": {},
   "private": true,
   "scripts": {
+    "preinstall": "node -e 'process.exit(0)'",
     "start": "electron ."
   }
 }
