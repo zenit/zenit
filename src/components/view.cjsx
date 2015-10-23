@@ -8,7 +8,7 @@ class View extends React.Component
   @displayName = 'View'
 
   constructor: (@props) ->
-    @lastView = localStorage.getItem('zenit:last-view').split(',')
+    @lastView = localStorage.getItem('zenit:last-view')?.split(',') || []
     @cache = []
 
     @state =
