@@ -113,5 +113,5 @@ module.exports = (grunt) ->
     if process.platform isnt 'win32'
       fs.symlinkSync(path.join('..', '..', 'bin', 'apm'), path.resolve(appDir, '..', 'new-app', 'apm', 'node_modules', '.bin', 'apm'))
 
-    dependencies = ['compile']
+    dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
     grunt.task.run(dependencies...)

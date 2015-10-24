@@ -131,7 +131,7 @@ loadExtensions = (modulePath, rootPath, rootMetadata, moduleCache) ->
   onDirectory = (childPath) ->
     # Don't include extensions from bundled packages
     # These are generated and stored in the package's own metadata cache
-    if rootMetadata.name is 'atom'
+    if rootMetadata.name is 'zenit'
       parentPath = path.dirname(childPath)
       if parentPath is nodeModulesPath
         packageName = path.basename(childPath)
@@ -196,9 +196,9 @@ resolveModulePath = (relativePath, parentModule) ->
 registerBuiltins = (devMode) ->
   if devMode or not cache.resourcePath.startsWith("#{process.resourcesPath}#{path.sep}")
     fs = require 'fs-plus'
-    atomCoffeePath = path.join(cache.resourcePath, 'exports', 'atom.coffee')
+    atomCoffeePath = path.join(cache.resourcePath, 'exports', 'zenit.coffee')
     cache.builtins.atom = atomCoffeePath if fs.isFileSync(atomCoffeePath)
-  cache.builtins.atom ?= path.join(cache.resourcePath, 'exports', 'atom.js')
+  cache.builtins.atom ?= path.join(cache.resourcePath, 'exports', 'zenit.js')
 
   atomShellRoot = path.join(process.resourcesPath, 'atom.asar')
 
@@ -258,7 +258,7 @@ exports.create = (modulePath) ->
   loadFolderCompatibility(modulePath, modulePath, metadata, moduleCache)
   loadExtensions(modulePath, modulePath, metadata, moduleCache)
 
-  metadata._atomModuleCache = moduleCache
+  metadata._zenitModuleCache = moduleCache
   fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2))
 
   return
@@ -289,7 +289,7 @@ exports.add = (directoryPath, metadata) ->
     catch error
       return
 
-  cacheToAdd = metadata?._atomModuleCache
+  cacheToAdd = metadata?._zenitModuleCache
   return unless cacheToAdd?
 
   for dependency in cacheToAdd.dependencies ? []
