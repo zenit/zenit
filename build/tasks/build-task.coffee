@@ -50,6 +50,8 @@ module.exports = (grunt) ->
       path.join('oniguruma', 'deps')
       path.join('node_modules', 'nan')
       path.join('node_modules', 'native-mate')
+      path.join('node_modules', 'electron-prebuilt')
+      path.join('node_modules', 'electron-rebuild')
       path.join('build', 'binding.Makefile')
       path.join('build', 'config.gypi')
       path.join('build', 'gyp-mac-tool')

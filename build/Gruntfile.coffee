@@ -101,4 +101,4 @@ module.exports = (grunt) ->
   # Register tasks
   grunt.registerTask('compile', ['coffee', 'less', 'cson'])
 
-  grunt.registerTask('default', ['download-electron', 'build'])
+  grunt.registerTask('default', ['download-electron', 'build', 'generate-asar'])
