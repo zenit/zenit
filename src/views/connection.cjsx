@@ -10,23 +10,35 @@ class ConnectionView extends React.Component
       <p className="title">Enter connection details below, or choose a favorite</p>
 
       <div className="container" onKeyDown={@_handleKeys}>
-        <label>Name</label>
-        <input type="text" ref={(c) => @_inputName = c} />
+        <div className="form-item">
+          <label>Name:</label>
+          <input type="text" placeholder="My Great Website (Live)" ref={(c) => @_inputName = c} />
+        </div>
 
-        <label>Hostname</label>
-        <input type="text" placeholder="127.0.0.1" ref={(c) => @_inputHost = c} />
+        <div className="form-item">
+          <label>Hostname:</label>
+          <input type="text" placeholder="127.0.0.1" ref={(c) => @_inputHost = c} />
+        </div>
 
-        <label>Username</label>
-        <input type="text" ref={(c) => @_inputUser = c} />
+        <div className="form-item">
+          <label>Username:</label>
+          <input type="text" placeholder="myuser" ref={(c) => @_inputUser = c} />
+        </div>
 
-        <label>Password</label>
-        <input type="password" ref={(c) => @_inputPassword = c} />
+        <div className="form-item">
+          <label>Password:</label>
+          <input type="password" ref={(c) => @_inputPassword = c} />
+        </div>
 
-        <label>Database</label>
-        <input type="text" placeholder="my-db-name" ref={(c) => @_inputDatabase = c} />
+        <div className="form-item">
+          <label>Database:</label>
+          <input type="text" placeholder="my-db-name" ref={(c) => @_inputDatabase = c} />
+        </div>
 
-        <label>Port</label>
-        <input type="text" placeholder="3306" />
+        <div className="form-item">
+          <label>Port:</label>
+          <input type="text" placeholder="3306" />
+        </div>
       </div>
 
       <button className="btn btn-connect" onClick={@_handleConnect}>Connect</button>
