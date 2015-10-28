@@ -25,8 +25,7 @@ class Application
     @resourcePath = path.dirname path.dirname(__dirname)
 
     @applicationMenu = new ApplicationMenu()
-    # TODO: Switch to async to boost startup time.
-    @applicationExecutor = new ApplicationExecutor()
+    _.defer(-> @applicationExecutor = new ApplicationExecutor())
 
     @handleEvents()
 
