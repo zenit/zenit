@@ -21,6 +21,7 @@
     "coffee-script": "^1.8.0",
     "event-kit": "^1.4.1",
     "fs-plus": "^2.8.1",
+    "got": "^5.0.0",
     "hapi": "^11.0.2",
     "less-cache": "^0.22.0",
     "mysql": "^2.9.0",

@@ -11,16 +11,19 @@ class ConnectionView extends React.Component
 
       <div className="container" onKeyDown={@_handleKeys}>
         <label>Name</label>
-        <input type="text" />
+        <input type="text" ref={(c) => @_inputName = c} />
+
+        <label>Hostname</label>
+        <input type="text" defaultValue="127.0.0.1" ref={(c) => @_inputHost = c} />
 
         <label>Username</label>
-        <input type="text" />
+        <input type="text" ref={(c) => @_inputUser = c} />
 
         <label>Password</label>
-        <input type="password" />
+        <input type="password" ref={(c) => @_inputPassword = c} />
 
         <label>Database</label>
-        <input type="text" placeholder="my-db-name" />
+        <input type="text" placeholder="my-db-name" ref={(c) => @_inputDatabase = c} />
 
         <label>Port</label>
         <input type="text" placeholder="3306" />
@@ -33,8 +36,17 @@ class ConnectionView extends React.Component
     # int(13) = Enter
     @_handleConnect() if evt.keyCode is 13
 
-  _handleConnect: ->
-    # Error sound
-    ApplicationDelegate.beep()
+  _handleConnect: =>
+    ApplicationDelegate.connect(
+      host: @_inputHost.value
+      user: @_inputUser.value
+      password: @_inputPassword.value
+      database: @_inputDatabase.value
+    ).then(->
+      alert 'Connected to root@localhost'
+    ).catch((err) ->
+      # Play 'beep' sound
+      ApplicationDelegate.beep()
+    )
 
 module.exports = ConnectionView

@@ -7,19 +7,40 @@ class ApplicationExecutor
   driver: null
 
   constructor: ->
+    process.env.ZENIT_SERVICE ?= 9000
+
     @server = new Hapi.Server()
-    # TODO: Use a custom driver
-    @driver = Mysql.createConnection(
+    @driver = {}
+
+    @server.connection(
       host: 'localhost'
-      user: 'root'
-      password: 'test'
-      database: 'xat'
+      port: process.env.ZENIT_SERVICE
     )
 
-    @server.connection({
-      host: 'localhost'
-      port: 9000 
-    })
+    @server.route(
+      method: 'GET'
+      path: '/connect/{data*4}'
+      handler: (request, reply) =>
+        dataParts = request.params.data.split('/')
+
+        # TODO: 
+        #  Use a custom driver
+        #  Emit event on ECONNRESET
+        @driver = Mysql.createConnection(
+          host: dataParts[0]
+          user: dataParts[1]
+          password: dataParts[2]
+          database: dataParts[3]
+        )
+        @driver.connect()
+
+        # Test the connection
+        @driver.query('SELECT 1', (err) ->
+          return reply('fail') if err
+
+          reply('ok')
+        )
+    )
 
     @server.route(
       method: 'GET'
@@ -33,5 +54,4 @@ class ApplicationExecutor
     @bootstrap()
 
   bootstrap: ->
-    @driver.connect()
     @server.start(=> console.log "Listening for new connections at @#{@server.info.uri}")

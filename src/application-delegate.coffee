@@ -2,6 +2,7 @@ ipc = require 'ipc'
 remote = require 'remote'
 shell = require 'shell'
 {Emitter} = require 'event-kit'
+got = require 'got'
 
 module.exports =
   emitter: new Emitter
@@ -32,3 +33,20 @@ module.exports =
 
   beep: ->
     shell.beep()
+
+  query: (sql) -> new Promise((resolve, reject) ->
+    got "http://localhost:9000/query/#{encodeURIComponent(sql)}", (err, body) ->
+      return reject(err) if err
+
+      try
+        resolve(JSON.parse(body))
+      catch err
+        reject(err)
+  )
+
+  connect: (data) -> new Promise((resolve, reject) ->
+    got "http://localhost:9000/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) ->
+      return reject(err) if err or body is 'fail'
+
+      resolve()
+  )
