@@ -14,7 +14,7 @@ class ConnectionView extends React.Component
         <input type="text" ref={(c) => @_inputName = c} />
 
         <label>Hostname</label>
-        <input type="text" defaultValue="127.0.0.1" ref={(c) => @_inputHost = c} />
+        <input type="text" placeholder="127.0.0.1" ref={(c) => @_inputHost = c} />
 
         <label>Username</label>
         <input type="text" ref={(c) => @_inputUser = c} />
