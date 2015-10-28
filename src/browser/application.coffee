@@ -25,7 +25,7 @@ class Application
     @resourcePath = path.dirname path.dirname(__dirname)
 
     @applicationMenu = new ApplicationMenu()
-    _.defer(-> @applicationExecutor = new ApplicationExecutor())
+    _.defer(=> @applicationExecutor = new ApplicationExecutor())
 
     @handleEvents()
 
