@@ -2,6 +2,7 @@ app = require 'app'
 path = require 'path'
 ApplicationMenu = require './application-menu'
 ApplicationWindow = require './application-window'
+ApplicationExecutor = require './application-executor'
 BrowserWindow = require 'browser-window'
 Menu = require 'menu'
 ipc = require 'ipc'
@@ -13,6 +14,7 @@ class Application
   _.extend @prototype, EventEmitter.prototype
 
   applicationMenu: null
+  applicationExecutor: null
   resourcePath: null
   windows: []
 
@@ -23,6 +25,8 @@ class Application
     @resourcePath = path.dirname path.dirname(__dirname)
 
     @applicationMenu = new ApplicationMenu()
+    # TODO: Switch to async to boost startup time.
+    @applicationExecutor = new ApplicationExecutor()
 
     @handleEvents()
 
