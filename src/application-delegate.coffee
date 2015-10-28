@@ -35,7 +35,7 @@ module.exports =
     shell.beep()
 
   query: (sql) -> new Promise((resolve, reject) ->
-    got "http://localhost:9000/query/#{encodeURIComponent(sql)}", (err, body) ->
+    got "http://localhost:#{process.env.ZENIT_SERVICE}/query/#{encodeURIComponent(sql)}", (err, body) ->
       return reject(err) if err
 
       try
@@ -45,7 +45,7 @@ module.exports =
   )
 
   connect: (data) -> new Promise((resolve, reject) ->
-    got "http://localhost:9000/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) ->
+    got "http://localhost:#{process.env.ZENIT_SERVICE}/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) ->
       return reject(err) if err or body is 'fail'
 
       resolve()
