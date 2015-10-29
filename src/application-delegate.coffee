@@ -3,10 +3,9 @@ remote = require 'remote'
 shell = require 'shell'
 {Emitter} = require 'event-kit'
 got = require 'got'
+_ = require 'underscore-plus'
 
-module.exports =
-  emitter: new Emitter
-
+ApplicationDelegate =
   showWindow: ->
     ipc.send('call-window-method', 'show')
 
@@ -50,3 +49,5 @@ module.exports =
 
       resolve()
   )
+
+module.exports = _.extend(ApplicationDelegate, new Emitter)

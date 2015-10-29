@@ -20,7 +20,7 @@ class View extends React.Component
     @_onStackChanged(@lastView) if @lastView.length > 0
 
   componentDidMount: ->
-    ApplicationDelegate.emitter.on 'inject-view', (view) =>
+    ApplicationDelegate.on 'inject-view', (view) =>
       @_onStackChanged(if typeof view is 'object' then view else [view])
 
   render: =>

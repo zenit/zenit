@@ -1,11 +1,18 @@
 React = require 'react'
 ApplicationDelegate = require '../application-delegate'
+_ = require 'underscore-plus'
 
 class ConnectionView extends React.Component
   @displayName = 'ConnectionView'
   @id = 'connection'
 
+  constructor: ->
+    @state = loading: false
+
   render: =>
+    classnames = "btn btn-connect"
+    classnames += " loading" if @state.loading
+
     <div className="view connection centered">
       <p className="title">Enter connection details below, or choose a favorite</p>
 
@@ -41,7 +48,7 @@ class ConnectionView extends React.Component
         </div>
       </div>
 
-      <button className="btn btn-connect" onClick={@_handleConnect}>Connect</button>
+      <button className={classnames} onClick={@_handleConnect}>Connect</button>
     </div>
 
   _handleKeys: (evt) =>
@@ -49,16 +56,24 @@ class ConnectionView extends React.Component
     @_handleConnect() if evt.keyCode is 13
 
   _handleConnect: =>
+    @setState loading: true
+
     ApplicationDelegate.connect(
       host: @_inputHost.value
       user: @_inputUser.value
       password: @_inputPassword.value
       database: @_inputDatabase.value
-    ).then(->
-      alert 'Connected to root@localhost'
-    ).catch((err) ->
+    ).then(=>
+      @setState loading: false
+
+      _.defer(->
+        ApplicationDelegate.emit('inject-view', 'main')
+      )
+    ).catch((err) =>
+      @setState loading: false
+
       # Play 'beep' sound
-      ApplicationDelegate.beep()
+      _.defer(ApplicationDelegate.beep)
     )
 
 module.exports = ConnectionView
