@@ -33,6 +33,7 @@ ApplicationDelegate =
   beep: ->
     shell.beep()
 
+  # Application executor methods
   query: (sql) -> new Promise((resolve, reject) ->
     got "http://localhost:#{process.env.ZENIT_SERVICE}/query/#{encodeURIComponent(sql)}", (err, body) ->
       return reject(err) if err
