@@ -6,6 +6,8 @@ class Header extends React.Component
     menuItems: React.PropTypes.array
 
   constructor: (@props) ->
+    @state =
+      menuItems: @props.menuItems
 
   render: =>
     <div className="header-inner">
@@ -38,12 +40,21 @@ class Header extends React.Component
     else return <div></div>
 
   _renderMenuItems: =>
-    @props.menuItems.map (item, index) ->
+    @state.menuItems.map (item, index) =>
       classnames = if index is 0 then 'active' else ''
 
       <li className="tabs-tab #{classnames}" key={index}>
         <a className="tabs-item">{item.name}</a>
-        <span className="octicon octicon-x"></span>
+
+        <span className="octicon octicon-x" value={index} onClick={@_handleCloseItem}></span>
       </li>
+
+  _handleCloseItem: (e) =>
+    index = parseInt(e.target.value, 10)
+
+    @setState (state) ->
+      state.menuItems.splice(index, 1)
+
+      menuItems: state.menuItems
 
 module.exports = Header
