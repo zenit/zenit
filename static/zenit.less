@@ -477,6 +477,15 @@ zenit-view .view-inner {
     width: 100%;
     height: 100%;
 
+    &.loading {
+      opacity: .5;
+      cursor: wait;
+
+      & > .container, & > .btn.btn-connect {
+        pointer-events: none;
+      }
+    }
+
     .title {
       font-weight: bold;
     }
@@ -519,6 +528,7 @@ zenit-view .view-inner {
     .btn.btn-connect {
       margin: 12px 0;
       float: right;
+      padding: 5px 12px;
     }
   }
 

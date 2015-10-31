@@ -10,10 +10,10 @@ class ConnectionView extends React.Component
     @state = loading: false
 
   render: =>
-    classnames = "btn btn-connect"
+    classnames = "view connection centered"
     classnames += " loading" if @state.loading
 
-    <div className="view connection centered">
+    <div className={classnames}>
       <p className="title">Enter connection details below, or choose a favorite</p>
 
       <div className="container" onKeyDown={@_handleKeys}>
@@ -48,7 +48,7 @@ class ConnectionView extends React.Component
         </div>
       </div>
 
-      <button className={classnames} onClick={@_handleConnect}>Connect</button>
+      <button className="btn btn-connect" onClick={@_handleConnect}>Connect</button>
     </div>
 
   _handleKeys: (evt) =>
@@ -71,6 +71,8 @@ class ConnectionView extends React.Component
       )
     ).catch((err) =>
       @setState loading: false
+
+      console.log err
 
       # Play 'beep' sound
       _.defer(ApplicationDelegate.beep)
