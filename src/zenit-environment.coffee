@@ -4,7 +4,7 @@ MenuManager = require './menu-manager'
 StyleManager = require './style-manager'
 ThemeManager = require './theme-manager'
 
-ApplicationDelegate = require './application-delegate'
+Application = require './flux/common/application'
 {getWindowLoadSettings} = require './window-load-settings-helpers'
 
 path = require 'path'
@@ -63,10 +63,10 @@ class ZenitEnvironment extends Model
     @focus()
 
   show: ->
-    ApplicationDelegate.showWindow()
+    Application.showWindow()
 
   focus: ->
-    ApplicationDelegate.focusWindow()
+    Application.focusWindow()
     @window.focus()
 
   startWindow: ->

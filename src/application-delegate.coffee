@@ -6,33 +6,6 @@ got = require 'got'
 _ = require 'underscore-plus'
 
 ApplicationDelegate =
-  showWindow: ->
-    ipc.send('call-window-method', 'show')
-
-  closeWindow: ->
-    ipc.send("call-window-method", "close")
-
-  focusWindow: ->
-    ipc.send("call-window-method", "focus")
-
-  maximizeWindow: ->
-    ipc.send("call-window-method", "maximize")
-
-  isWindowMaximized: ->
-    remote.getCurrentWindow().isMaximized()
-  
-  minimizeWindow: ->
-    ipc.send("call-window-method", "minimize")
-
-  restoreWindow: ->
-    ipc.send("call-window-method", "restore")
-
-  shell: (method, args...) ->
-    shell[method](args...)
-
-  beep: ->
-    shell.beep()
-
   # Application executor methods
   query: (sql) -> new Promise((resolve, reject) ->
     got "http://localhost:#{process.env.ZENIT_SERVICE}/query/#{encodeURIComponent(sql)}", (err, body) ->
@@ -42,13 +15,6 @@ ApplicationDelegate =
         resolve(JSON.parse(body))
       catch err
         reject(err)
-  )
-
-  connect: (data) -> new Promise((resolve, reject) ->
-    got "http://localhost:#{process.env.ZENIT_SERVICE}/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) ->
-      return reject(err) if err or body is 'fail'
-
-      resolve()
   )
 
 module.exports = _.extend(ApplicationDelegate, new Emitter)
