@@ -25,6 +25,7 @@ class Application
     @resourcePath = path.dirname path.dirname(__dirname)
 
     @applicationMenu = new ApplicationMenu()
+    @applicationExecutor = new ApplicationExecutor()
 
     @handleEvents()
 
@@ -49,8 +50,6 @@ class Application
         'subpixel-font-scaling': true
 
     new ApplicationWindow options
-
-    _.defer(=> @applicationExecutor = new ApplicationExecutor())
 
   handleEvents: ->
     @on 'application:quit', => app.quit()

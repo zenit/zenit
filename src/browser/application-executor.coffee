@@ -10,7 +10,6 @@ class ApplicationExecutor
     process.env.ZENIT_SERVICE ?= 9000
 
     @server = new Hapi.Server()
-    @driver = {}
 
     @server.connection(
       host: 'localhost'
