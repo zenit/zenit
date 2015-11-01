@@ -46,10 +46,10 @@ class Header extends React.Component
       <li className="tabs-tab #{classnames}" key={index}>
         <a className="tabs-item">{item.name}</a>
 
-        <span className="octicon octicon-x" onClick={@_handleCloseItem.bind(null, index)}></span>
+        <span className="octicon octicon-x" onClick={@_handleCloseTab.bind(null, index)}></span>
       </li>
 
-  _handleCloseItem: (index) =>
+  _handleCloseTab: (index) =>
     @setState (state) ->
       state.menuItems.splice(index, 1)
 
