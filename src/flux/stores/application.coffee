@@ -12,6 +12,9 @@ Store = Reflux.createStore(
   init: ->
     @listenToMany(Actions)
 
+    @lastView = localStorage.getItem('zenit:last-view')?.split(',') || null
+    @onLoadView(@lastView) if @lastView
+
   onLoadView: (view) ->
     views = []
     view = [view] if typeof view != 'object'

@@ -9,8 +9,6 @@ class View extends React.Component
   @displayName = 'View'
 
   constructor: (@props) ->
-    @lastView = localStorage.getItem('zenit:last-view')?.split(',') || []
-
     @state =
       stack: ApplicationStore.getViews()
 
