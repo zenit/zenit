@@ -15,7 +15,7 @@ class View extends React.Component
     @state =
       stack: ApplicationStore.getViews()
 
-  componentDidMount: ->
+  componentDidMount: =>
     @unsubscribe = ApplicationStore.listen(@onStateChange)
 
   onStateChange: =>
