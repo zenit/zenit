@@ -1,6 +1,5 @@
 React = require 'react'
 ReactDOM = require 'react-dom'
-ApplicationDelegate = require '../application-delegate'
 
 ApplicationStore = require '../flux/stores/application'
 
