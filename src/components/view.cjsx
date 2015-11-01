@@ -2,6 +2,8 @@ React = require 'react'
 ReactDOM = require 'react-dom'
 ApplicationDelegate = require '../application-delegate'
 
+ApplicationStore = require '../flux/stores/application'
+
 _ = require 'underscore-plus'
 
 class View extends React.Component
@@ -10,45 +12,31 @@ class View extends React.Component
   # TODO: Unmount views when switching
   constructor: (@props) ->
     @lastView = localStorage.getItem('zenit:last-view')?.split(',') || []
-    @cache = []
 
     @state =
-      stack: [
-        require '../views/get-started'
-      ]
-
-  componentWillMount: ->
-    @_onStackChanged(@lastView) if @lastView.length > 0
+      stack: ApplicationStore.getViews()
 
   componentDidMount: ->
+    @unsubscribe = ApplicationStore.listen(@onStateChange)
+
+    ###
     ApplicationDelegate.on 'inject-view', (view) =>
       @_onStackChanged(if typeof view is 'object' then view else [view])
+    ###
 
-  render: =>
-    <div className="view-inner">
-      {# Custom element, use normal class tag #}
-      {@_injectStackComponents()}
-    </div>
+  onStateChange: =>
+    @setState stack: ApplicationStore.getViews()
 
-  _injectStackComponents: =>
+  renderViews: =>
     return <span>There is no view in the stack</span> unless @state.stack.length > 0
 
     # Render
     @state.stack.map (ContentView, index) =>
       <ContentView key={"#{index}:#{ContentView.id}"} />
 
-  _onStackChanged: (stack) =>
-    tempStack = []
-
-    stack.map (viewName) =>
-      @cache[viewName] ?= require "../views/#{viewName}"
-
-      tempStack.push @cache[viewName]
-
-    # Save session views
-    localStorage.setItem('zenit:last-view', stack.join(','))
-
-    # Update state
-    @setState stack: tempStack
+  render: =>
+    <div className="view-inner">
+      {@renderViews()}
+    </div>
 
 module.exports = View

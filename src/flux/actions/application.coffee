@@ -1,7 +1,7 @@
 Reflux = require 'reflux'
 
 Actions = Reflux.createActions([
-  'createConnection'
+  'loadView'
 ])
 
 module.exports = Actions

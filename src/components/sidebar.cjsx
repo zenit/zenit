@@ -1,6 +1,8 @@
 React = require 'react'
 ApplicationDelegate = require '../application-delegate'
 
+ApplicationActions = require '../flux/actions/application'
+
 class Sidebar extends React.Component
   @displayName = 'Sidebar'
 
@@ -36,13 +38,13 @@ class Sidebar extends React.Component
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
 
-        <span className="octicon octicon-info" onClick={() -> ApplicationDelegate.emit('inject-view', 'about')}></span>
+        <span className="octicon octicon-info" onClick={() -> ApplicationActions.loadView('about')}></span>
       </div>
 
       <div className="view-resize-handle"></div>
     </div>
 
   _handleQuickConnect: ->
-    ApplicationDelegate.emit('inject-view', 'connection')
+    ApplicationActions.loadView('connection')
 
 module.exports = Sidebar
