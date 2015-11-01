@@ -1,13 +1,22 @@
 React = require 'react'
-ApplicationDelegate = require '../application-delegate'
 _ = require 'underscore-plus'
+
+ApplicationActions = require '../flux/actions/application'
+DatabaseActions = require '../flux/actions/database'
+DatabaseStore = require '../flux/stores/database'
 
 class ConnectionView extends React.Component
   @displayName = 'ConnectionView'
   @id = 'connection'
 
   constructor: ->
-    @state = loading: false
+    @state = _.clone(DatabaseStore.getStore())
+
+  componentDidMount: =>
+    @unsubscribe = DatabaseStore.listen(@onStateChange)
+
+  onStateChange: =>
+    @setState DatabaseStore.getStore()
 
   render: =>
     classnames = "view connection centered"
@@ -56,19 +65,18 @@ class ConnectionView extends React.Component
     @_handleConnect() if evt.keyCode is 13
 
   _handleConnect: =>
-    @setState loading: true
-
-    ApplicationDelegate.connect(
+    DatabaseActions.createConnection(
       host: @_inputHost.value
       user: @_inputUser.value
       password: @_inputPassword.value
       database: @_inputDatabase.value
-    ).then(=>
+    )
+
+    ###
+    .then(=>
       @setState loading: false
 
-      _.defer(->
-        ApplicationDelegate.emit('inject-view', 'main')
-      )
+      _.defer(-> ApplicationActions.loadView('main'))
     ).catch((err) =>
       @setState loading: false
 
@@ -77,5 +85,6 @@ class ConnectionView extends React.Component
       # Play 'beep' sound
       _.defer(ApplicationDelegate.beep)
     )
+    ###
 
 module.exports = ConnectionView
