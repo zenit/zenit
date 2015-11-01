@@ -1,6 +1,5 @@
 React = require 'react'
-ApplicationDelegate = require '../application-delegate'
-
+Application = require '../flux/common/application'
 ApplicationActions = require '../flux/actions/application'
 
 class Sidebar extends React.Component
@@ -34,7 +33,7 @@ class Sidebar extends React.Component
       </ul>
 
       <div className="bottom-links">
-        <span className="octicon octicon-gear" onClick={() -> ApplicationDelegate.shell('openExternal', process.env.ZENIT_HOME)}></span>
+        <span className="octicon octicon-gear" onClick={() -> Application.shell('openExternal', process.env.ZENIT_HOME)}></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
 
