@@ -7,6 +7,7 @@ _ = require 'underscore-plus'
 class View extends React.Component
   @displayName = 'View'
 
+  # TODO: Unmount views when switching
   constructor: (@props) ->
     @lastView = localStorage.getItem('zenit:last-view')?.split(',') || []
     @cache = []
@@ -26,9 +27,7 @@ class View extends React.Component
   render: =>
     <div className="view-inner">
       {# Custom element, use normal class tag #}
-      <zenit-axis class="vertical">
-        {@_injectStackComponents()}
-      </zenit-axis>
+      {@_injectStackComponents()}
     </div>
 
   _injectStackComponents: =>

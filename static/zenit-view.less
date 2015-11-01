@@ -1,0 +1,611 @@
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: @background-color;
+  font-size: 12px;
+  color: @text-color;
+  margin: 0;
+}
+
+.list.list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+zenit-root {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  zenit-titlebar {
+    display: block;
+    background-color: @header-color;
+    margin-top: 3px; // Make able to resize the top side
+    margin-bottom: 1px; // Prevent tab:hover when moving the cursor from header to titlebar
+    -webkit-app-region: drag;
+    -webkit-user-select: none; // ?
+    height: 26px;
+    color: rgba(157, 165, 180, 0.6);
+
+    .titlebar-inner {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+
+    .logo {
+      float: left;
+      position: relative;
+      height: 100%;
+
+      .logo-link {
+        background: url(@logo-url) no-repeat 4px -2px;
+        display: block;
+        height: 18px;
+        width: 60px;
+      }
+    }
+
+    .menu-list {
+      position: relative;
+      float: left;
+      top: 1px;
+
+      & > .menu-item {
+        cursor: pointer;
+        display: inline-block;
+        padding: 3px 5px;
+        border-radius: 4px;
+        -webkit-app-region: no-drag;
+      }
+    }
+
+    .actions-wrapper {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+
+      align-items: center;
+
+      float: right;
+      height: 100%;
+
+      .actions-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: -webkit-box;
+
+        .actions-item > .img {
+          background-repeat: no-repeat;
+          height: 21px;
+          width: 25px;
+
+          cursor: default;
+          -webkit-app-region: no-drag;
+
+          &.close {
+            background-image: url(@close-url);
+            width: 45px;
+          }
+
+          &.close:hover {
+            background-image: url(@close-hover-url);
+          }
+
+          &.close:active {
+            background-image: url(@close-pressed-url);
+          }
+
+          &.max {
+            background-image: url(@max-url);
+          }
+
+          &.max:hover {
+            background-image: url(@max-hover-url);
+          }
+
+          &.max:active {
+            background-image: url(@max-pressed-url);
+          }
+          
+          &.max.restore {
+            background-image: url(@restore-url) !important;
+          }
+
+          &.max.restore:hover {
+            background-image: url(@restore-hover-url) !important;
+          }
+
+          &.min {
+            background-image: url(@min-url);
+          }
+
+          &.min:hover {
+            background-image: url(@min-hover-url);
+          }
+
+          &.min:active {
+            background-image: url(@min-pressed-url);
+          }
+        }
+      }
+    }
+  }
+
+  zenit-header {
+    display: block;
+    width: 100%;
+    height: @header-height;
+    background-color: @header-color;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: @header-text-color;
+    box-shadow: @header-shadow;
+  }
+
+  zenit-sidebar {
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    -webkit-align-items: stretch;
+    height: 100%;
+  }
+
+  zenit-axis {
+    &.horizontal {
+      display: -webkit-flex;
+      height: 100%;
+    }
+
+    &.vertical {
+      display: -webkit-flex;
+      -webkit-flex: 1;
+      -webkit-flex-flow: column;
+    }
+  }
+
+  zenit-view {
+    position: relative;
+    display: -webkit-flex;
+    -webkit-flex: 1;
+    height: 100%;
+  }
+}
+
+zenit-header .header-inner {
+  height: 100%;
+  -webkit-user-select: none;
+
+  .logo {
+    float: left;
+    background: #f50;
+    background: @logo-color;
+    height: 100%;
+
+    .logo-link {
+      background: url(@logo-url) no-repeat 10px 18px;
+      background-size: 48px 22px;
+      display: block;
+      height: 60px;
+      width: 69px;
+    }
+  }
+
+  .tabs-list {
+    display: inline-table;
+    height: @header-height;
+    box-shadow: inset 0 -1px 0 #181a1f;
+    background: @header-color;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 0;
+
+    .tabs-tab {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      top: 0;
+      height: @header-height;
+      font-size: inherit;
+      color: @header-tab-text-color;
+      line-height: @header-height;
+      padding: 0;
+      margin: 0;
+      background-clip: content-box;
+      text-align: center;
+      border-width: @header-tab-border-width;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 1px 0 0 #181a1f;
+      
+      &.new-tab {
+        &:hover {
+          border: none;
+        }
+
+        .octicon {
+          color: #fff;
+          opacity: .3 !important;
+          margin: 10px;
+
+          &:hover {
+            color: #fff;
+            opacity: .3;
+          }
+        }
+      }
+
+      .octicon {
+        position: relative;
+        top: 1px;
+        margin-right: 10px;
+        opacity: 0;
+
+        &:hover {
+          color: #fff;
+          opacity: .6;
+        }
+      }
+
+      .octicon.octicon-x {
+        transform: scale(0);
+        transition: transform .08s;
+      }
+
+      &:hover {
+        .octicon {
+          opacity: .8;
+        }
+
+        .octicon-x {
+          transform: scale(1);
+          transition-duration: .16s;
+        }
+      }
+
+      &.active, &:hover {
+        background-color: @header-tab-color;
+        border-bottom: solid @header-tab-border-color;
+        border-width: @header-tab-hover-border-width;
+        transition: border-width 700ms cubic-bezier(0, 0.6, 0.2, 1);
+      }
+
+      &:active {
+        background-color: darken(@header-tab-color, 1%);
+      }
+
+      &.connected {
+        border-color: @header-tab-connected-color;
+      }
+    }
+
+    .tabs-item {
+      padding: 10px 10px 10px 20px;
+    }
+  }
+
+  .history-buttons {
+    float: right;
+    padding: 17px;
+    right: 0;
+    display: inline-block;
+    color: @header-history-buttons-text-color;
+    top: -6px; // Decrease top to show better the label
+
+    .mega-octicon {
+      font-size: 24px;
+    }
+
+    .history-button {
+      cursor: pointer;
+      float: left;
+      background-color: @header-history-button-color;
+      padding: 0 7px;
+      border: 1px solid @header-history-button-border-color;
+
+      &.left {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-right-width: 0;
+      }
+
+      &.right {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px
+      }
+
+      &:hover:not(.disabled), &.active:not(.disabled) {
+        color: @header-history-button-active-text-color;
+        background: @header-history-button-active-color;
+      }
+
+      &:active:not(.disabled) {
+        background: transparent !important;
+      }
+    }
+
+    .label {
+      position: relative;
+      display: block;
+      cursor: default;
+      font-size: 12px;
+      right: 9px;
+      bottom: 0;
+    }
+  }
+}
+
+zenit-sidebar .sidebar-inner {
+  left: 0;
+  width: @sidebar-width;
+  height: 100%;
+  bottom: 0;
+  background-color: @sidebar-color;
+  border-right: 1px solid @sidebar-border-color;
+  padding: 10px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  cursor: default;
+  -webkit-user-select: none;
+  min-width: @sidebar-min-width;
+  z-index: 2;
+
+  .octicon {
+    padding: 0 6px;
+  }
+  
+  .favorites-link, .quick-connect-link {
+    color: @sidebar-link-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: default;
+    padding: 7px 0;
+  }
+
+  .quick-connect-link {
+    cursor: pointer;
+  }
+
+  .divider {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid @sidebar-divider-color;
+  }
+
+  .favorites-list {
+    margin-top: 8px;
+    overflow: auto;
+    height: 100%;
+
+    .favorites-list-item {
+      cursor: pointer;
+      border-radius: 5px;
+      padding: 3px;
+      width: 100%;
+      background-color: #FE7C66;
+      display: block;
+      margin-bottom: 4px;
+
+      &:hover {
+        background-color: darken(#FE7C66, 5%);
+      }
+
+      &.blue {
+        background-color: #77CCFF;
+
+        &:hover {
+          background-color: darken(#77CCFF, 5%);
+        }
+      }
+
+      &.green {
+        background-color: #C2EC7F;
+
+        &:hover {
+          background-color: darken(#C2EC7F, 5%);
+        }
+      }
+    }
+  }
+
+  .bottom-links {
+    position: fixed;
+    background-color: #EDEDED;
+    padding: 5px;
+    bottom: 0;
+    border-top: 1px solid #D9D9D9;
+    width: @sidebar-width - 1px;
+    left: 0;
+
+    & > span {
+      cursor: pointer;
+      font-size: 15px;
+
+      &:hover {
+        opacity: .9
+      }
+
+      &.octicon-info {
+        float: right;
+      }
+    }
+  }
+
+  .view-resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    cursor: ew-resize;
+    z-index: 3;
+    right: -3px;
+  }
+}
+
+zenit-view .view-inner {
+  background-color: @view-color;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  -webkit-user-select: none;
+}
+
+.view {
+  &.centered {
+    text-align: center;
+  }
+
+  &.connection {
+    padding: 0 45px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &.loading {
+      opacity: .5;
+      cursor: wait;
+
+      & > .container, & > .btn.btn-connect {
+        pointer-events: none;
+      }
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .container {
+      background-color: #E4E4E4;
+      padding: 12px 30px;
+      text-align: left;
+
+      .form-item {
+        position: relative;
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 6px;
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      label {
+        display: inline-block;
+        font-size: 13px;
+        width: 95px;
+        top: -2px;
+        position: relative;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        display: inline-block;
+        font-size: 13px;
+
+        .input-mixin();
+      }
+    }
+
+    .btn.btn-connect {
+      margin: 12px 0;
+      float: right;
+      padding: 5px 12px;
+    }
+  }
+
+  &.about {
+    .logo {
+      .version {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.input-mixin {
+  width: 100%;
+  min-height: 25px;
+  padding: 5px 10px;
+  line-height: 1.6;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: 0;
+
+  &:focus {
+    border-color: #6db3fd;
+    box-shadow: 2px 2px 0 #6db3fd,
+      -2px -2px 0 #6db3fd,
+      -2px 2px 0 #6db3fd,
+      2px -2px 0 #6db3fd;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.06);
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none
+  }
+}
+
+.btn.btn-connect {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+  border-color: #388df8 #388df8 #0866dc;
+  background-color: #6eb4f7;
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#6eb4f7),color-stop(100%,#1a82fb));
+  background-image: -webkit-linear-gradient(top,#6eb4f7 0,#1a82fb 100%);
+  background-image: linear-gradient(to bottom,#6eb4f7 0,#1a82fb 100%);
+
+  &:active {
+    background-color: #3e9bf4;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#3e9bf4),color-stop(100%,#0469de));
+    background-image: -webkit-linear-gradient(top,#3e9bf4 0,#0469de 100%);
+    background-image: linear-gradient(to bottom,#3e9bf4 0,#0469de 100%)
+  }
+}
+
+zenit-root /deep/ ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+zenit-root /deep/ ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+zenit-root /deep/ ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  border: 3px solid #E0E0E0;
+  background: #6A717C;
+  background-clip: content-box;
+}

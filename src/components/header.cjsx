@@ -16,7 +16,7 @@ class Header extends React.Component
       <ul className="list list-reset tabs-list">
         {@_renderMenuItems()}
         
-        <li className="tabs-tab new-tab">
+        <li className="tabs-tab new-tab" onClick={@_handleNewTab}>
           <span className="octicon octicon-plus"></span>
         </li>
       </ul>
@@ -52,6 +52,12 @@ class Header extends React.Component
   _handleCloseTab: (index) =>
     @setState (state) ->
       state.menuItems.splice(index, 1)
+
+      menuItems: state.menuItems
+
+  _handleNewTab: =>
+    @setState (state) ->
+      state.menuItems.push(name: 'Example')
 
       menuItems: state.menuItems
 
