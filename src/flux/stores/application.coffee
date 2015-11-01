@@ -13,18 +13,16 @@ Store = Reflux.createStore(
     @listenToMany(Actions)
 
   onLoadView: (view) ->
-    temp = []
+    views = []
     view = [view] if typeof view != 'object'
 
     view.map (viewName) =>
       cache.views[viewName] ?= require "../../views/#{viewName}"
 
-      temp.push cache.views[viewName]
+      views.push cache.views[viewName]
 
     # Save actual views
     localStorage.setItem('zenit:last-view', view.join(','))
-
-    views = temp
 
     # Emit changes
     @trigger()
