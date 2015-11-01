@@ -9,7 +9,6 @@ _ = require 'underscore-plus'
 class View extends React.Component
   @displayName = 'View'
 
-  # TODO: Unmount views when switching
   constructor: (@props) ->
     @lastView = localStorage.getItem('zenit:last-view')?.split(',') || []
 
@@ -18,11 +17,6 @@ class View extends React.Component
 
   componentDidMount: ->
     @unsubscribe = ApplicationStore.listen(@onStateChange)
-
-    ###
-    ApplicationDelegate.on 'inject-view', (view) =>
-      @_onStackChanged(if typeof view is 'object' then view else [view])
-    ###
 
   onStateChange: =>
     @setState stack: ApplicationStore.getViews()
