@@ -78,10 +78,11 @@ class ConnectionView extends React.Component
 
   _handleConnect: =>
     nameInput = @refs.nameInput.value
+    hostInput = @refs.hostInput.value
 
     DatabaseActions.createConnection(
       name: if nameInput.length > 0 then nameInput else 'Untitled'
-      host: @refs.hostInput.value
+      host: if hostInput.length > 0 then hostInput else '127.0.0.1'
       user: @refs.userInput.value
       password: @refs.passwordInput.value
       database: @refs.databaseInput.value
