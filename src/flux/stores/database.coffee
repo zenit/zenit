@@ -18,15 +18,17 @@ Store = Reflux.createStore(
     Got "http://localhost:#{process.env.ZENIT_SERVICE}/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) =>
       cache.loading = false
 
+      conn =
+        name: data.name
+        status: false
+        data: data
+
       if err or body is 'fail'
         Common.beep()
       else
-        cache.connections.unshift
-          name: data.name
-          status: true
-          data: data
+        conn.status = true
 
-      console.log cache.connections
+      cache.connections.unshift conn
 
       @trigger()
 
