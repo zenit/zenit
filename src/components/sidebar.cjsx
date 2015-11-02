@@ -6,6 +6,9 @@ ApplicationActions = require '../flux/actions/application'
 class Sidebar extends React.Component
   @displayName = 'Sidebar'
 
+  constructor: ->
+    @cachedSidebarWidth = localStorage.getItem('zenit:sidebar-width') || null
+
   onQuickConnect: ->
     ApplicationActions.loadView('connection')
 
@@ -20,9 +23,13 @@ class Sidebar extends React.Component
 
     startDrag = (e) ->
       adj = e.clientX - clientX
+      result = initWidth + adj
 
-      sidebar.style.width = "#{(initWidth + adj)}px"
-      bottom.style.width = "#{(initWidth + adj) - 1}px"
+      sidebar.style.width = "#{result}px"
+      bottom.style.width = "#{result - 1}px"
+
+      # Save sidebar width
+      localStorage.setItem('zenit:sidebar-width', result)
       
     stopDrag = (e) ->
       document.documentElement.removeEventListener 'mousemove', startDrag, false
@@ -32,7 +39,13 @@ class Sidebar extends React.Component
     document.documentElement.addEventListener 'mouseup', stopDrag, false
 
   render: =>
-    <div className="sidebar-inner" ref="sidebar">
+    sidebarStyles =
+      width: "#{@cachedSidebarWidth}px" if @cachedSidebarWidth
+
+    bottomStyles =
+      width: "#{@cachedSidebarWidth - 1}px" if @cachedSidebarWidth
+
+    <div className="sidebar-inner" style={sidebarStyles} ref="sidebar">
       <a className="quick-connect-link" onClick={@onQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
 
       <span className="divider"></span>
@@ -58,7 +71,7 @@ class Sidebar extends React.Component
         </li>
       </ul>
 
-      <div className="bottom-links" ref="bottom">
+      <div className="bottom-links" style={bottomStyles} ref="bottom">
         <span className="octicon octicon-gear" onClick={Application.shell.bind(null, 'openExternal', process.env.ZENIT_HOME)}></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
