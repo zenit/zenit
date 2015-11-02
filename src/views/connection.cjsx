@@ -39,27 +39,27 @@ class ConnectionView extends React.Component
       <div className="container" onKeyDown={@_handleKeys}>
         <div className="form-item">
           <label>Name:</label>
-          <input type="text" placeholder="My Great Website (Live)" ref={(c) => @_inputName = c} />
+          <input type="text" placeholder="My Great Website (Live)" ref="nameInput" />
         </div>
 
         <div className="form-item">
           <label>Hostname:</label>
-          <input type="text" placeholder="127.0.0.1" ref={(c) => @_inputHost = c} />
+          <input type="text" placeholder="127.0.0.1" ref="hostInput" />
         </div>
 
         <div className="form-item">
           <label>Username:</label>
-          <input type="text" placeholder="myuser" ref={(c) => @_inputUser = c} />
+          <input type="text" placeholder="myuser" ref="userInput" />
         </div>
 
         <div className="form-item">
           <label>Password:</label>
-          <input type="password" ref={(c) => @_inputPassword = c} />
+          <input type="password" ref="passwordInput" />
         </div>
 
         <div className="form-item">
           <label>Database:</label>
-          <input type="text" placeholder="my-db-name" ref={(c) => @_inputDatabase = c} />
+          <input type="text" placeholder="my-db-name" ref="databaseInput" />
         </div>
 
         <div className="form-item">
@@ -76,11 +76,14 @@ class ConnectionView extends React.Component
     @_handleConnect() if evt.keyCode is 13
 
   _handleConnect: =>
+    nameInput = @refs.nameInput.value
+
     DatabaseActions.createConnection(
-      host: @_inputHost.value
-      user: @_inputUser.value
-      password: @_inputPassword.value
-      database: @_inputDatabase.value
+      name: if nameInput.length > 0 then nameInput else 'Untitled'
+      host: @refs.hostInput.value
+      user: @refs.userInput.value
+      password: @refs.passwordInput.value
+      database: @refs.databaseInput.value
     )
 
     ###

@@ -22,9 +22,11 @@ Store = Reflux.createStore(
         Common.beep()
       else
         cache.connections.unshift
-          name: 'Example'
+          name: data.name
           status: true
           data: data
+
+      console.log cache.connections
 
       @trigger()
 
