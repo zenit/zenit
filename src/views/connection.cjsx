@@ -15,6 +15,9 @@ class ConnectionView extends React.Component
   componentDidMount: =>
     @unsubscribe = DatabaseStore.listen(@onStateChange)
 
+  componentWillUnmount: ->
+    @unsubscribe()
+
   onStateChange: =>
     @setState DatabaseStore.getStore()
 
