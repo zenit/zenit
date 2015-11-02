@@ -1,5 +1,4 @@
 React = require 'react'
-ReactDOM = require 'react-dom'
 
 Application = require '../flux/common/application'
 ApplicationActions = require '../flux/actions/application'
