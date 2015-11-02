@@ -1,2 +1,2 @@
-This folder is where [apm](https://github.com/atom/apm) is installed to so that
+This folder is where [zpm](https://github.com/iiegor/zpm) is installed to so that
 it is bundled with Zenit.
