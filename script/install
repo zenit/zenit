@@ -24,13 +24,13 @@ function executeCommands(commands, done, index) {
 }
 
 function bootstrap() {
-  var apmInstallPath = path.resolve(__dirname, '..', 'apm');
+  var apmInstallPath = path.resolve(__dirname, '..', 'zpm');
   if (!fs.existsSync(apmInstallPath))
     fs.mkdirSync(apmInstallPath);
   if (!fs.existsSync(path.join(apmInstallPath, 'node_modules')))
     fs.mkdirSync(path.join(apmInstallPath, 'node_modules'));
 
-  var apmPath = path.resolve(__dirname, '..', 'apm', 'node_modules', 'atom-package-manager', 'bin', 'apm')
+  var apmPath = path.resolve(__dirname, '..', 'zpm', 'node_modules', 'zenit-package-manager', 'bin', 'zpm')
   var apmFlags = process.argv.indexOf('--no-color') !== -1 ? ' --no-color' : '';
 
   var npmPath = path.resolve(__dirname, '..', 'build', 'node_modules', '.bin', 'npm');
@@ -74,7 +74,7 @@ function bootstrap() {
     },
     {
       command: apmInstallCommand,
-      message: 'Installing apm...',
+      message: 'Installing zpm...',
       options: apmInstallOptions
     },
     apmPath + ' clean' + apmFlags,
