@@ -59,7 +59,7 @@ module.exports = (grunt) ->
       path.join('build', 'Release', 'obj.target')
       path.join('build', 'Release', 'obj')
       path.join('build', 'Release', '.deps')
-      path.join('vendor', 'apm')
+      path.join('vendor', 'zpm')
     ]
 
     packageNames.forEach (packageName) -> ignoredPaths.push(path.join(packageName, 'spec'))
@@ -111,9 +111,9 @@ module.exports = (grunt) ->
     cp 'src', path.join(appDir, 'src'), filter: /.+\.(cson|coffee)$/
     cp 'static', path.join(appDir, 'static')
 
-    cp path.join('apm', 'node_modules', 'atom-package-manager'), path.resolve(appDir, '..', 'new-app', 'apm'), filter: filterNodeModule
+    cp path.join('zpm', 'node_modules', 'zenit-package-manager'), path.resolve(appDir, '..', 'new-app', 'zpm'), filter: filterNodeModule
     if process.platform isnt 'win32'
-      fs.symlinkSync(path.join('..', '..', 'bin', 'apm'), path.resolve(appDir, '..', 'new-app', 'apm', 'node_modules', '.bin', 'apm'))
+      fs.symlinkSync(path.join('..', '..', 'bin', 'zpm'), path.resolve(appDir, '..', 'new-app', 'zpm', 'node_modules', '.bin', 'zpm'))
 
     dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
     grunt.task.run(dependencies...)
