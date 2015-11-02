@@ -15,8 +15,16 @@ class ConnectionView extends React.Component
   componentDidMount: =>
     @unsubscribe = DatabaseStore.listen(@onStateChange)
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     @unsubscribe()
+
+  shouldComponentUpdate: =>
+    # If the status of the new connection is true then load main view 
+    if @state.connections.length > 0 and @state.connections[0].status is true
+      ApplicationActions.loadView('main')
+
+      false
+    else true
 
   onStateChange: =>
     @setState DatabaseStore.getStore()
