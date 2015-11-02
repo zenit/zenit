@@ -63,8 +63,9 @@ function bootstrap() {
 
   // apm ships with 32-bit node so make sure its native modules are compiled
   // for a 32-bit target architecture
-  if (process.platform === 'win32')
-    apmInstallCommand += ' --arch=ia32';
+  // TODO: Causing problems with zpm@1.4.12
+  /*if (process.platform === 'win32')
+    apmInstallCommand += ' --arch=ia32';*/
 
   var commands = [
     {
