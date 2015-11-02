@@ -21,7 +21,7 @@ Store = Reflux.createStore(
       if err or body is 'fail'
         Common.beep()
       else
-        cache.connections.push
+        cache.connections.unshift
           name: 'Example'
           status: true
           data: data
