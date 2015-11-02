@@ -59,11 +59,11 @@ class Sidebar extends React.Component
       </ul>
 
       <div className="bottom-links" ref="bottom">
-        <span className="octicon octicon-gear" onClick={() -> Application.shell('openExternal', process.env.ZENIT_HOME)}></span>
+        <span className="octicon octicon-gear" onClick={Application.shell.bind(null, 'openExternal', process.env.ZENIT_HOME)}></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
 
-        <span className="octicon octicon-info" onClick={() -> ApplicationActions.loadView('about')}></span>
+        <span className="octicon octicon-info" onClick={ApplicationActions.loadView.bind(null, 'about')}></span>
       </div>
 
       <div className="view-resize-handle" onMouseDown={@onDrag}></div>
