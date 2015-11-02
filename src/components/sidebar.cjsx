@@ -1,13 +1,40 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
+
 Application = require '../flux/common/application'
 ApplicationActions = require '../flux/actions/application'
 
 class Sidebar extends React.Component
   @displayName = 'Sidebar'
 
+  onQuickConnect: ->
+    ApplicationActions.loadView('connection')
+
+  onDrag: (e) =>
+    {clientX} = e
+
+    sidebar = @refs.sidebar
+    bottom = @refs.bottom
+
+    {width} = document.defaultView.getComputedStyle(sidebar)
+    initWidth = parseInt(width, 10)
+
+    startDrag = (e) ->
+      adj = e.clientX - clientX
+
+      sidebar.style.width = "#{(initWidth + adj)}px"
+      bottom.style.width = "#{(initWidth + adj) - 1}px"
+      
+    stopDrag = (e) ->
+      document.documentElement.removeEventListener 'mousemove', startDrag, false
+      document.documentElement.removeEventListener 'mouseup', stopDrag, false
+
+    document.documentElement.addEventListener 'mousemove', startDrag, false
+    document.documentElement.addEventListener 'mouseup', stopDrag, false
+
   render: =>
-    <div className="sidebar-inner">
-      <a className="quick-connect-link" onClick={@_handleQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
+    <div className="sidebar-inner" ref="sidebar">
+      <a className="quick-connect-link" onClick={@onQuickConnect}><span className="octicon octicon-zap"></span> Quick connect</a>
 
       <span className="divider"></span>
 
@@ -32,7 +59,7 @@ class Sidebar extends React.Component
         </li>
       </ul>
 
-      <div className="bottom-links">
+      <div className="bottom-links" ref="bottom">
         <span className="octicon octicon-gear" onClick={() -> Application.shell('openExternal', process.env.ZENIT_HOME)}></span>
         <span className="octicon octicon-file-directory"></span>
         <span className="octicon octicon-plus"></span>
@@ -40,10 +67,7 @@ class Sidebar extends React.Component
         <span className="octicon octicon-info" onClick={() -> ApplicationActions.loadView('about')}></span>
       </div>
 
-      <div className="view-resize-handle"></div>
+      <div className="view-resize-handle" onMouseDown={@onDrag}></div>
     </div>
-
-  _handleQuickConnect: ->
-    ApplicationActions.loadView('connection')
 
 module.exports = Sidebar

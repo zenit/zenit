@@ -432,6 +432,7 @@ zenit-sidebar .sidebar-inner {
     bottom: 0;
     border-top: 1px solid #D9D9D9;
     width: @sidebar-width - 1px;
+    min-width: @sidebar-min-width - 1px;
     left: 0;
 
     & > span {
@@ -521,6 +522,7 @@ zenit-view .view-inner {
       input[type="password"] {
         display: inline-block;
         font-size: 13px;
+        -webkit-user-select: none;
 
         .input-mixin();
       }
