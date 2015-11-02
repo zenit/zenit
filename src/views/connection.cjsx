@@ -88,19 +88,4 @@ class ConnectionView extends React.Component
       database: @refs.databaseInput.value
     )
 
-    ###
-    .then(=>
-      @setState loading: false
-
-      _.defer(-> ApplicationActions.loadView('main'))
-    ).catch((err) =>
-      @setState loading: false
-
-      console.log err
-
-      # Play 'beep' sound
-      _.defer(ApplicationDelegate.beep)
-    )
-    ###
-
 module.exports = ConnectionView
