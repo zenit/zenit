@@ -4,5 +4,7 @@
 
 :warning: This is currently under extremely active development, and you probably shouldn't use it unless you like broken software.
 
+![img](http://i.imgur.com/JB2bMgS.png)
+
 ## License
 MIT © [Iegor Azuaga](https://github.com/iiegor)
