@@ -1,7 +1,7 @@
 Reflux = require 'reflux'
 Actions = require '../actions/database'
 Common = require '../common/application'
-Got = require 'got'
+Executor = new (require('remote').require('../browser/application-executor.coffee'))
 
 cache =
   loading: false
@@ -15,34 +15,25 @@ Store = Reflux.createStore(
     cache.loading = true
     @trigger()
 
-    Got "http://localhost:#{process.env.ZENIT_SERVICE}/connect/#{data.host}/#{data.user}/#{data.password}/#{data.database}", (err, body) =>
-      cache.loading = false
+    Executor.createConnection(data)
+      .then((=>
+        cache.loading = false
 
-      conn =
-        name: data.name
-        status: false
-        data: data
+        conn =
+          name: data.name
+          status: true
+          data: data
 
-      if err or body is 'fail'
+        cache.connections.unshift conn
+
+        @trigger()
+      ))
+      .catch(=> 
+        cache.loading = false
         Common.beep()
-      else
-        conn.status = true
 
-      cache.connections.unshift conn
-
-      @trigger()
-
-  ###
-  query: (sql) -> new Promise((resolve, reject) ->
-    got "http://localhost:#{process.env.ZENIT_SERVICE}/query/#{encodeURIComponent(sql)}", (err, body) ->
-      return reject(err) if err
-
-      try
-        resolve(JSON.parse(body))
-      catch err
-        reject(err)
-  )
-  ###
+        @trigger()
+      )
 
   getStore: ->
     cache
