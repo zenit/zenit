@@ -3,6 +3,7 @@ _ = require 'underscore-plus'
 
 ApplicationActions = require '../flux/actions/application'
 DatabaseActions = require '../flux/actions/database'
+
 DatabaseStore = require '../flux/stores/database'
 
 class ConnectionView extends React.Component

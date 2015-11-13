@@ -28,9 +28,24 @@ Store = Reflux.createStore(
 
         @trigger()
       )
-      .catch(=> 
+      .catch((err) => 
         cache.loading = false
         Common.beep()
+
+        Common.createDialog 
+          type: 'warning'
+          buttons: ['Ok']
+          message: "Unable to connect to host #{data.host}"
+          detail: """
+            Please ensure that your MySQL host is set up to allow
+            TCP/IP connections and is configured to allow connections
+            from the host you are tunnelling via.
+
+            You may also want to check the port is correct and
+            that you have the necessary privileges.
+
+            MySQL said: #{err.message}
+            """
 
         @trigger()
       )
