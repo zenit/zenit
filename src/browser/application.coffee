@@ -40,8 +40,8 @@ class Application
       height: 600
       frame: frame
       'standard-window': frame
-      'min-width': 500
-      'min-height': 400
+      'min-width': 600
+      'min-height': 500
       'web-preferences':
         'direct-write': true
         'subpixel-font-scaling': true
