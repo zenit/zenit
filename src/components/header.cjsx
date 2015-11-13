@@ -1,5 +1,8 @@
 React = require 'react'
 
+ApplicationCommon = require '../flux/common/application'
+ApplicationActions = require '../flux/actions/application'
+
 class Header extends React.Component
   @displayName = 'Header'
   @propTypes:
@@ -9,14 +12,53 @@ class Header extends React.Component
     @state =
       menuItems: @props.menuItems
 
+  onTab: (index) ->
+    # TODO: Create only the first time
+    ApplicationCommon.createDialog
+      type: 'warning'
+      buttons: ['Ok', 'No']
+      message: 'The current connection will be closed'
+      detail: 'You can enable concurrent sessions in settings.'
+
+  onNewTab: =>
+    @setState (state) ->
+      state.menuItems.push(name: 'Untitled')
+
+      menuItems: state.menuItems
+
+    ApplicationActions.loadView('connection')
+
+  onCloseTab: (index) =>
+    @setState (state) ->
+      state.menuItems.splice(index, 1)
+
+      menuItems: state.menuItems
+
+  renderLogo: ->
+    if process.platform != 'win32'
+      <div className="logo">
+        <a className="logo-link"></a>
+      </div>
+    else return <div></div>
+
+  renderMenuItems: =>
+    @state.menuItems.map (item, index) =>
+      classnames = if index is 0 then 'active' else ''
+
+      <li className="tabs-tab #{classnames}" key={index} onClick={@onTab.bind(null, index)}>
+        <a className="tabs-item">{item.name}</a>
+
+        <span className="octicon octicon-x" onClick={@onCloseTab.bind(null, index)}></span>
+      </li>
+
   render: =>
     <div className="header-inner">
-      {@_renderLogo()}
+      {@renderLogo()}
 
       <ul className="list list-reset tabs-list">
-        {@_renderMenuItems()}
+        {@renderMenuItems()}
         
-        <li className="tabs-tab new-tab" onClick={@_handleNewTab}>
+        <li className="tabs-tab new-tab" onClick={@onNewTab}>
           <span className="octicon octicon-plus"></span>
         </li>
       </ul>
@@ -31,34 +73,5 @@ class Header extends React.Component
         </div>
       </div>
     </div>
-
-  _renderLogo: ->
-    if process.platform != 'win32'
-      <div className="logo">
-        <a className="logo-link"></a>
-      </div>
-    else return <div></div>
-
-  _renderMenuItems: =>
-    @state.menuItems.map (item, index) =>
-      classnames = if index is 0 then 'active' else ''
-
-      <li className="tabs-tab #{classnames}" key={index}>
-        <a className="tabs-item">{item.name}</a>
-
-        <span className="octicon octicon-x" onClick={@_handleCloseTab.bind(null, index)}></span>
-      </li>
-
-  _handleCloseTab: (index) =>
-    @setState (state) ->
-      state.menuItems.splice(index, 1)
-
-      menuItems: state.menuItems
-
-  _handleNewTab: =>
-    @setState (state) ->
-      state.menuItems.push(name: 'Example')
-
-      menuItems: state.menuItems
 
 module.exports = Header

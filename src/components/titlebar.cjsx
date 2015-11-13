@@ -8,7 +8,6 @@ class Titlebar extends React.Component
     @state =
       classList: 'max'
 
-  # TODO: Render application menu
   render: =>
     <div className="titlebar-inner">
       <div className="actions-wrapper">

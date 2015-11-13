@@ -1,6 +1,7 @@
 shell = require 'shell'
 ipc = require 'ipc'
 remote = require 'remote'
+dialog = null
 
 Common =
   showWindow: ->
@@ -26,6 +27,11 @@ Common =
 
   shell: (method, args...) ->
     shell[method](args...)
+
+  createDialog: (opts) ->
+    dialog ?= remote.require('dialog')
+
+    dialog.showMessageBox remote.getCurrentWindow(), opts
 
   beep: ->
     shell.beep()

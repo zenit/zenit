@@ -16,7 +16,7 @@ Store = Reflux.createStore(
     @trigger()
 
     Executor.createConnection(data)
-      .then((=>
+      .then(=>
         cache.loading = false
 
         conn =
@@ -27,12 +27,18 @@ Store = Reflux.createStore(
         cache.connections.unshift conn
 
         @trigger()
-      ))
+      )
       .catch(=> 
         cache.loading = false
         Common.beep()
 
         @trigger()
+      )
+
+  query: (q) ->
+    Executor.query(q)
+      .then((rows) =>
+        console.log rows
       )
 
   getStore: ->

@@ -76,7 +76,7 @@ class ApplicationWindow
       @browserWindow.destroy() if chosen is 0
     
     @browserWindow.webContents.on 'crashed', =>
-      global.atomApplication.exit(100) if @headless
+      global.zenitApplication.exit(100) if @headless
 
       chosen = dialog.showMessageBox @browserWindow,
         type: 'warning'

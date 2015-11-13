@@ -15,6 +15,7 @@ Store = Reflux.createStore(
     @lastView = localStorage.getItem('zenit:last-view')?.split(',') || null
     @onLoadView(@lastView) if @lastView
 
+  # TODO: Only load 1 view per call instead of mapping the fn args
   onLoadView: (view) ->
     views = []
     view = [view] if typeof view != 'object'
