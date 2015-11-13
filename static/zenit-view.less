@@ -482,7 +482,7 @@ zenit-view .view-inner {
   }
 
   &.connection {
-    padding: 0 45px;
+    padding: 0 70px;
     position: relative;
     width: 100%;
     height: 100%;
@@ -501,11 +501,15 @@ zenit-view .view-inner {
     }
 
     .container {
+      display: -webkit-flex;
+      -webkit-flex-direction: column;
       background-color: #E4E4E4;
-      padding: 12px 30px;
+      padding: 12px 50px;
       text-align: left;
+      min-height: calc(100% - 30px);
 
       .form-item {
+        flex: 1;
         position: relative;
         width: 100%;
         display: inline-flex;
