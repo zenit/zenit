@@ -69,7 +69,10 @@ class ConnectionView extends React.Component
         </div>
       </div>
 
-      <button className="btn btn-connect" onClick={@_handleConnect}>Connect</button>
+      <div style={float: 'right'}>
+        <button className="btn btn-connect" onClick={@_handleConnect}>Add to favorites</button>
+        <button className="btn btn-connect" onClick={@_handleConnect}>Connect</button>
+      </div>
     </div>
 
   _handleKeys: (evt) =>

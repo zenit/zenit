@@ -101,48 +101,54 @@ zenit-root {
           -webkit-app-region: no-drag;
 
           &.close {
-            background-image: url(@close-url);
+            background-image: url('../resources/application-frame/close.png');
+            background-position: 0 0;
             width: 45px;
           }
 
           &.close:hover {
-            background-image: url(@close-hover-url);
+            background-position: 0 -20px;
           }
 
           &.close:active {
-            background-image: url(@close-pressed-url);
+            background-position: 0 -40px;
           }
 
           &.max {
-            background-image: url(@max-url);
+            background-image: url('../resources/application-frame/max.png');
+            background-position: 0 0;
           }
 
           &.max:hover {
-            background-image: url(@max-hover-url);
+            background-position: 0 -20px;
           }
 
           &.max:active {
-            background-image: url(@max-pressed-url);
+            background-position: 0 -40px;
           }
           
           &.max.restore {
-            background-image: url(@restore-url) !important;
+            background-image: url('../resources/application-frame/restore.png') !important;
           }
 
           &.max.restore:hover {
-            background-image: url(@restore-hover-url) !important;
+            background-position: 0 -20px !important;
+          }
+
+          &.max.restore:active {
+            background-position: 0 -40px !important;
           }
 
           &.min {
-            background-image: url(@min-url);
+            background-image: url('../resources/application-frame/min.png');
           }
 
           &.min:hover {
-            background-image: url(@min-hover-url);
+            background-position: 0 -20px;
           }
 
           &.min:active {
-            background-image: url(@min-pressed-url);
+            background-position: 0 -40px;
           }
         }
       }
@@ -530,8 +536,12 @@ zenit-view .view-inner {
 
     .btn.btn-connect {
       margin: 12px 0;
-      float: right;
+      float: left;
       padding: 5px 12px;
+
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
     }
   }
 

@@ -14,11 +14,13 @@ class Header extends React.Component
 
   onTab: (index) ->
     # TODO: Create only the first time
+    ###
     ApplicationCommon.createDialog
       type: 'warning'
       buttons: ['Ok', 'No']
       message: 'The current connection will be closed'
       detail: 'You can enable concurrent sessions in settings.'
+    ###
 
   onNewTab: =>
     @setState (state) ->
