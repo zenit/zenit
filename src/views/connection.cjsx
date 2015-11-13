@@ -66,7 +66,7 @@ class ConnectionView extends React.Component
 
         <div className="form-item">
           <label>Port:</label>
-          <input type="text" placeholder="3306" />
+          <input type="text" placeholder="3306" ref="portInput" />
         </div>
       </div>
 
@@ -83,6 +83,7 @@ class ConnectionView extends React.Component
   _handleConnect: =>
     nameInput = @refs.nameInput.value
     hostInput = @refs.hostInput.value
+    portInput = @refs.portInput.value
 
     DatabaseActions.createConnection(
       name: if nameInput.length > 0 then nameInput else 'Untitled'
@@ -90,6 +91,7 @@ class ConnectionView extends React.Component
       user: @refs.userInput.value
       password: @refs.passwordInput.value
       database: @refs.databaseInput.value
+      port: if portInput.length > 0 then parseInt(portInput) else 3306
     )
 
 module.exports = ConnectionView
