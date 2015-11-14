@@ -149,8 +149,8 @@ module.exports = (grunt) ->
   ciTasks = []
   ciTasks.push('download-electron')
   ciTasks.push('build')
-  ciTasks.push('lint', 'generate-asar')
+  ciTasks.push('set-version', 'lint', 'generate-asar')
   ciTasks.push('create-windows-installer:installer') if process.platform is 'win32'
   grunt.registerTask('ci', ciTasks)
 
-  grunt.registerTask('default', ['download-electron', 'build', 'generate-asar'])
+  grunt.registerTask('default', ['download-electron', 'build', 'set-version', 'generate-asar'])

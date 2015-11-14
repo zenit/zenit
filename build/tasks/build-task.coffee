@@ -16,16 +16,17 @@ module.exports = (grunt) ->
 
     if process.platform is 'darwin'
       cp 'electron/Electron.app', shellAppDir, filter: /default_app/
-      fs.renameSync path.join(shellAppDir, 'Contents', 'MacOS', 'Electron'), path.join(shellAppDir, 'Contents', 'MacOS', 'Zenit')
-      fs.renameSync path.join(shellAppDir, 'Contents', 'Frameworks', 'Electron Helper.app'), path.join(shellAppDir, 'Contents', 'Frameworks', 'Zenit Helper.app')
-      fs.renameSync path.join(shellAppDir, 'Contents', 'Frameworks', 'Zenit Helper.app', 'Contents', 'MacOS', 'Electron Helper'), path.join(shellAppDir, 'Contents', 'Frameworks', 'Zenit Helper.app', 'Contents', 'MacOS', 'Zenit Helper')
+      cp(path.join(shellAppDir, 'Contents', 'MacOS', 'Electron'),
+         path.join(shellAppDir, 'Contents', 'MacOS', 'Zenit'))
+      rm path.join(shellAppDir, 'Contents', 'MacOS', 'Electron')
+    else if process.platform is 'win32'
+      cp 'electron', shellAppDir, filter: /default_app/
+      cp path.join(shellAppDir, 'electron.exe'), path.join(shellAppDir, 'zenit.exe')
+      rm path.join(shellAppDir, 'electron.exe')
     else
       cp 'electron', shellAppDir, filter: /default_app/
-
-      if process.platform is 'win32'
-        fs.renameSync path.join(shellAppDir, 'electron.exe'), path.join(shellAppDir, 'zenit.exe')
-      else
-        fs.renameSync path.join(shellAppDir, 'electron'), path.join(shellAppDir, 'zenit')
+      cp path.join(shellAppDir, 'electron'), path.join(shellAppDir, 'zenit')
+      rm path.join(shellAppDir, 'electron')
 
     mkdir appDir
 
@@ -131,19 +132,21 @@ module.exports = (grunt) ->
     cp 'src', path.join(appDir, 'src'), filter: /.+\.(cson|coffee|cjsx)$/
     cp 'static', path.join(appDir, 'static')
 
-    # Move all of the node modules inside /apm/node_modules to new-app/apm/node_modules
-    apmInstallDir = path.resolve(appDir, '..', 'new-app', 'zpm')
-    mkdir apmInstallDir
-    cp path.join('zpm', 'node_modules'), path.resolve(apmInstallDir, 'node_modules'), filter: filterNodeModule
+    cp path.join('zpm', 'node_modules', 'zenit-package-manager'), path.resolve(appDir, '..', 'new-app', 'zpm'), filter: filterNodeModule
 
-    # Move /zpm/node_modules/zenit-package-manager to new-app/apm. We're essentially
-    # pulling the zenit-package-manager module up outside of the node_modules folder,
-    # which is necessary because npmV3 installs nested dependencies in the same dir.
-    apmPackageDir = path.join(apmInstallDir, 'node_modules', 'zenit-package-manager')
-    for name in fs.readdirSync(apmPackageDir)
-      fs.renameSync path.join(apmPackageDir, name), path.join(apmInstallDir, name)
-    fs.unlinkSync(path.join(apmInstallDir, 'node_modules', '.bin', 'zpm'))
-    fs.rmdirSync(apmPackageDir)
+    if process.platform is 'darwin'
+      grunt.file.recurse path.join('resources', 'mac'), (sourcePath, rootDirectory, subDirectory='', filename) ->
+        unless /.+\.plist/.test(sourcePath)
+          grunt.file.copy(sourcePath, path.resolve(appDir, '..', subDirectory, filename))
+
+    if process.platform is 'win32'
+      cp path.join('resources', 'win', 'zenit.cmd'), path.join(shellAppDir, 'resources', 'cli', 'zenit.cmd')
+      cp path.join('resources', 'win', 'zenit.sh'), path.join(shellAppDir, 'resources', 'cli', 'zenit.sh')
+      cp path.join('resources', 'win', 'zenit.js'), path.join(shellAppDir, 'resources', 'cli', 'zenit.js')
+      cp path.join('resources', 'win', 'zpm.sh'), path.join(shellAppDir, 'resources', 'cli', 'zpm.sh')
+
+    if process.platform is 'linux'
+      cp path.join('resources', 'app-icons', 'png'), path.join(buildDir, 'icons')
 
     dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
     dependencies.push('set-exe-icon') if process.platform is 'win32'

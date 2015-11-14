@@ -10,11 +10,6 @@ module.exports = (grunt) ->
 
     unpack = [
       '*.node'
-      'ctags-config'
-      'ctags-darwin'
-      'ctags-linux'
-      'ctags-win32.exe'
-      '**/resources/zenit.png'
     ]
     unpack = "{#{unpack.join(',')}}"
 
@@ -28,9 +23,5 @@ module.exports = (grunt) ->
 
       rm appDir
       fs.renameSync path.resolve(appDir, '..', 'new-app'), appDir
-
-      ctagsFolder = path.join("#{appDir}.asar.unpacked", 'node_modules')
-      for ctagsFile in fs.readdirSync(ctagsFolder)
-        fs.chmodSync(path.join(ctagsFolder, ctagsFile), "755")
 
       done()
