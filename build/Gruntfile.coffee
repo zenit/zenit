@@ -143,7 +143,7 @@ module.exports = (grunt) ->
   )
 
   # Register tasks
-  grunt.registerTask('compile', ['coffee', 'less', 'cson'])
+  grunt.registerTask('compile', ['coffee', 'cjsx', 'less', 'cson'])
   grunt.registerTask('lint', ['coffeelint'])
 
   ciTasks = []
