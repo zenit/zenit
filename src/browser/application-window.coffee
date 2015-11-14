@@ -31,7 +31,7 @@ class ApplicationWindow
     loadSettings =
       frameless: !options.frame
       appVersion: app.getVersion()
-      devMode: true
+      devMode: global.zenitApplication.devMode
       resourcePath: global.zenitApplication.resourcePath
       windowInitializationScript: require.resolve(path.join(global.zenitApplication.resourcePath, 'src', 'window-bootstrap'))
 

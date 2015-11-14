@@ -16,7 +16,9 @@ class Application
   resourcePath: null
   windows: []
 
-  constructor: ->
+  constructor: (args) ->
+    {@devMode} = args
+
     global.zenitApplication = this
 
     @windows = []
