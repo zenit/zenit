@@ -137,6 +137,8 @@ module.exports = (grunt) ->
   grunt.registerTask('lint', ['coffeelint'])
 
   ciTasks = []
+  ciTasks.push('download-electron')
+  ciTasks.push('build')
   ciTasks.push('lint', 'generate-asar')
   grunt.registerTask('ci', ciTasks)
 
