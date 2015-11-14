@@ -3,9 +3,9 @@ path = require 'path'
 _ = require 'underscore-plus'
 
 module.exports = (grunt) ->
-  grunt.registerTask 'build', 'Build the application', ->
-    {cp, isZenitPackage, mkdir, rm} = require('./task-helpers')(grunt)
+  {cp, isZenitPackage, mkdir, rm} = require('./task-helpers')(grunt)
 
+  grunt.registerTask 'build', 'Build the application', ->
     shellAppDir = grunt.config.get('zenit.shellAppDir')
     buildDir = grunt.config.get('zenit.buildDir')
     appDir = grunt.config.get('zenit.appDir')
@@ -28,6 +28,9 @@ module.exports = (grunt) ->
         fs.renameSync path.join(shellAppDir, 'electron'), path.join(shellAppDir, 'zenit')
 
     mkdir appDir
+
+    if process.platform isnt 'win32'
+      cp 'zenit.sh', path.resolve(appDir, '..', 'new-app', 'zenit.sh')
 
     cp 'package.json', path.join(appDir, 'package.json')
 
@@ -60,6 +63,23 @@ module.exports = (grunt) ->
       path.join('build', 'Release', 'obj')
       path.join('build', 'Release', '.deps')
       path.join('vendor', 'zpm')
+
+      '.DS_Store'
+      '.jshintrc'
+      '.npmignore'
+      '.pairs'
+      '.travis.yml'
+      'appveyor.yml'
+      '.idea'
+      '.editorconfig'
+      '.lint'
+      '.lintignore'
+      '.eslintrc'
+      '.jshintignore'
+      'coffeelint.json'
+      '.coffeelintignore'
+      '.gitattributes'
+      '.gitkeep'
     ]
 
     packageNames.forEach (packageName) -> ignoredPaths.push(path.join(packageName, 'spec'))
@@ -108,7 +128,7 @@ module.exports = (grunt) ->
     for directory in packageDirectories
       cp directory, path.join(appDir, directory), filter: filterPackage
 
-    cp 'src', path.join(appDir, 'src'), filter: /.+\.(cson|coffee)$/
+    cp 'src', path.join(appDir, 'src'), filter: /.+\.(cson|coffee|cjsx)$/
     cp 'static', path.join(appDir, 'static')
 
     cp path.join('zpm', 'node_modules', 'zenit-package-manager'), path.resolve(appDir, '..', 'new-app', 'zpm'), filter: filterNodeModule
@@ -116,4 +136,5 @@ module.exports = (grunt) ->
       fs.symlinkSync(path.join('..', '..', 'bin', 'zpm'), path.resolve(appDir, '..', 'new-app', 'zpm', 'node_modules', '.bin', 'zpm'))
 
     dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
+    dependencies.push('set-exe-icon') if process.platform is 'win32'
     grunt.task.run(dependencies...)

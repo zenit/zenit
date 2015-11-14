@@ -16,7 +16,7 @@ module.exports = (grunt) ->
 
   appName = packageJson.productName
   appFileName = packageJson.name
-  apmFileName = 'apm'
+  apmFileName = 'zpm'
   buildDir = path.join(__dirname, 'zenit-build')
   shellAppDir = path.join(buildDir, appName)
   symbolsDir = path.join(buildDir, 'Zenit.breakpad.syms')
@@ -130,6 +130,16 @@ module.exports = (grunt) ->
       outputDir: 'electron'
       downloadDir: electronDownloadDir
       rebuild: true  # rebuild native modules after electron is updated
+
+    'create-windows-installer':
+      installer:
+        appDirectory: shellAppDir
+        outputDirectory: path.join(buildDir, 'installer')
+        authors: 'Iegor Azuaga'
+        loadingGif: path.resolve(__dirname, '..', 'resources', 'win', 'loading.gif')
+        iconUrl: "https://raw.githubusercontent.com/zenit/zenit/master/resources/app-icons/zenit.ico"
+        setupIcon: path.resolve(__dirname, '..', 'resources', 'app-icons', 'zenit.ico')
+        #remoteReleases: "https://atom.io/api/updates?version=#{metadata.version}"
   )
 
   # Register tasks
@@ -140,6 +150,7 @@ module.exports = (grunt) ->
   ciTasks.push('download-electron')
   ciTasks.push('build')
   ciTasks.push('lint', 'generate-asar')
+  ciTasks.push('create-windows-installer:installer') if process.platform is 'win32'
   grunt.registerTask('ci', ciTasks)
 
   grunt.registerTask('default', ['download-electron', 'build', 'generate-asar'])
