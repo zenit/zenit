@@ -131,9 +131,19 @@ module.exports = (grunt) ->
     cp 'src', path.join(appDir, 'src'), filter: /.+\.(cson|coffee|cjsx)$/
     cp 'static', path.join(appDir, 'static')
 
-    cp path.join('zpm', 'node_modules', 'zenit-package-manager'), path.resolve(appDir, '..', 'new-app', 'zpm'), filter: filterNodeModule
-    if process.platform isnt 'win32'
-      fs.symlinkSync(path.join('..', '..', 'bin', 'zpm'), path.resolve(appDir, '..', 'new-app', 'zpm', 'node_modules', '.bin', 'zpm'))
+    # Move all of the node modules inside /apm/node_modules to new-app/apm/node_modules
+    apmInstallDir = path.resolve(appDir, '..', 'new-app', 'zpm')
+    mkdir apmInstallDir
+    cp path.join('zpm', 'node_modules'), path.resolve(apmInstallDir, 'node_modules'), filter: filterNodeModule
+
+    # Move /zpm/node_modules/zenit-package-manager to new-app/apm. We're essentially
+    # pulling the zenit-package-manager module up outside of the node_modules folder,
+    # which is necessary because npmV3 installs nested dependencies in the same dir.
+    apmPackageDir = path.join(apmInstallDir, 'node_modules', 'zenit-package-manager')
+    for name in fs.readdirSync(apmPackageDir)
+      fs.renameSync path.join(apmPackageDir, name), path.join(apmInstallDir, name)
+    fs.unlinkSync(path.join(apmInstallDir, 'node_modules', '.bin', 'zpm'))
+    fs.rmdirSync(apmPackageDir)
 
     dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
     dependencies.push('set-exe-icon') if process.platform is 'win32'
