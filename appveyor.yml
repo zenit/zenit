@@ -1,0 +1,33 @@
+version: "{build}"
+
+skip_tags: true
+clone_folder: c:\projects\zenit
+clone_depth: 10
+
+platform:
+  - x86
+
+environment:
+  global:
+    ZENIT_DEV_RESOURCE_PATH: c:\projects\zenit
+
+  matrix:
+  - NODE_VERSION: 0.10.35
+
+install:
+  - SET PATH=C:\Program Files\Zenit\resources\cli;%PATH%
+  - ps: Install-Product node $env:NODE_VERSION $env:PLATFORM
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - C:\projects\zenit\script\cibuild.cmd
+
+test: off
+deploy: off
+artifacts:
+  - path: zenit-build
+
+cache:
+  - '%USERPROFILE%\.zenit\.zpm'
+  - '%USERPROFILE%\.zenit\.node-gyp\.zenit'
+  - '%USERPROFILE%\.zenit\.npm'
