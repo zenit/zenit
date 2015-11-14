@@ -6,6 +6,6 @@
     "url": "https://github.com/iiegor/zenit.git"
   },
   "dependencies": {
-    "zenit-package-manager": "1.4.12"
+    "zenit-package-manager": "1.4.13"
   }
 }
