@@ -1,4 +1,4 @@
-# Zenit [![Build Status](https://travis-ci.org/zenit/zenit.svg?branch=master)](https://travis-ci.org/zenit/zenit) ![deps-status](https://david-dm.org/zenit/zenit.svg)
+# Zenit [![Build Status](https://travis-ci.org/zenit/zenit.svg?branch=master)](https://travis-ci.org/zenit/zenit) [![Build status](https://ci.appveyor.com/api/projects/status/7be8j82lv1nvm9tc?svg=true)](https://ci.appveyor.com/project/iiegor/zenit) ![deps-status](https://david-dm.org/zenit/zenit.svg)
 **Zenit** is an open-source database administration tool built on the modern web with [Electron](https://github.com/atom/electron), [React](https://facebook.github.io/react/) and [Reflux](https://github.com/reflux/refluxjs). In addition to the features that zenit can offer, it can be easily extended.
 
 
