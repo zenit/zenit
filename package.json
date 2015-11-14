@@ -15,6 +15,7 @@
   "license": "MIT",
   "electronVersion": "0.34.3",
   "dependencies": {
+    "async": "0.2.6",
     "atom-keymap": "^6.1.1",
     "babel-core": "^6.1.2",
     "coffee-react": "^4.0.0",
