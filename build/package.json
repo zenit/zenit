@@ -14,6 +14,7 @@
     "grunt-cson": "^0.16.0",
     "grunt-download-electron": "^2.1.2",
     "grunt-electron-installer": "^1.0.8",
+    "grunt-lesslint": "^1.4.1",
     "npm": "^3.3.9"
   }
 }

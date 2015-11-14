@@ -4,6 +4,7 @@ packageJson = require '../package.json'
 module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-less')
+  grunt.loadNpmTasks('grunt-lesslint')
   grunt.loadNpmTasks('grunt-cson')
   grunt.loadNpmTasks('grunt-download-electron')
   grunt.loadNpmTasks('grunt-electron-installer')
@@ -91,6 +92,11 @@ module.exports = (grunt) ->
     prebuildLess: prebuildLessConfig
     cson: csonConfig
 
+    lesslint:
+      src: [
+        'static/**/*.less'
+      ]
+
     'download-electron':
       version: packageJson.electronVersion
       outputDir: 'electron'
@@ -100,5 +106,10 @@ module.exports = (grunt) ->
 
   # Register tasks
   grunt.registerTask('compile', ['coffee', 'less', 'cson'])
+  grunt.registerTask('lint', ['lesslint'])
+
+  ciTasks = []
+  ciTasks.push('lint', 'generate-asar')
+  grunt.registerTask('ci', ciTasks)
 
   grunt.registerTask('default', ['download-electron', 'build', 'generate-asar'])
