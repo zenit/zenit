@@ -7,6 +7,10 @@ clone_depth: 10
 platform:
   - x86
 
+branches:
+  only:
+    - master
+
 environment:
   global:
     ZENIT_DEV_RESOURCE_PATH: c:\projects\zenit
