@@ -28,7 +28,7 @@ class ApplicationWindow
     @handleEvents()
 
     # Load from a settings file
-    loadSettings = 
+    loadSettings =
       frameless: !options.frame
       appVersion: app.getVersion()
       devMode: true

@@ -20,7 +20,7 @@ class ConnectionView extends React.Component
     @unsubscribe()
 
   shouldComponentUpdate: =>
-    # If the status of the new connection is true then load main view 
+    # If the status of the new connection is true then load main view
     # TODO: Need to use other logic, this is for testing...
     if @state.connections.length > 0 and @state.connections[0].status is true
       ApplicationActions.loadView('main')

@@ -2,9 +2,10 @@ path = require 'path'
 packageJson = require '../package.json'
 
 module.exports = (grunt) ->
+  grunt.loadNpmTasks('grunt-coffeelint-cjsx')
+  grunt.loadNpmTasks('grunt-coffee-react')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-less')
-  grunt.loadNpmTasks('grunt-lesslint')
   grunt.loadNpmTasks('grunt-cson')
   grunt.loadNpmTasks('grunt-download-electron')
   grunt.loadNpmTasks('grunt-electron-installer')
@@ -36,6 +37,15 @@ module.exports = (grunt) ->
   electronDownloadDir = path.join(homeDir, '.zenit', 'electron')
 
   # Configs
+  cjsxConfig =
+    glob_to_multiple:
+      expand: true
+      src: [
+        'src/**/*.cjsx'
+      ]
+      dest: appDir
+      ext: '.js'
+
   coffeeConfig =
     glob_to_multiple:
       expand: true
@@ -88,14 +98,32 @@ module.exports = (grunt) ->
       appDir, buildDir, contentsDir, shellAppDir, symbolsDir,
     }
     coffee: coffeeConfig
+    cjsx: cjsxConfig
     less: lessConfig
     prebuildLess: prebuildLessConfig
     cson: csonConfig
 
-    lesslint:
+    coffeelint:
+      options:
+        configFile: 'build/config/coffeelint.json'
       src: [
-        'static/**/*.less'
+        'src/**/*.coffee'
+        'src/**/*.cjsx'
       ]
+      build: [
+        'build/tasks/**/*.coffee'
+        'build/Gruntfile.coffee'
+      ]
+      test: [
+        'spec/**/*.cjsx'
+        'spec/**/*.coffee'
+      ]
+      static: [
+        'static/**/*.coffee'
+        'static/**/*.cjsx'
+      ]
+      target:
+        grunt.option("target")?.split(" ") or []
 
     'download-electron':
       version: packageJson.electronVersion
@@ -106,7 +134,7 @@ module.exports = (grunt) ->
 
   # Register tasks
   grunt.registerTask('compile', ['coffee', 'less', 'cson'])
-  grunt.registerTask('lint', ['lesslint'])
+  grunt.registerTask('lint', ['coffeelint'])
 
   ciTasks = []
   ciTasks.push('lint', 'generate-asar')

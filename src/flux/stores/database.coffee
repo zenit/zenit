@@ -28,11 +28,11 @@ Store = Reflux.createStore(
 
         @trigger()
       )
-      .catch((err) => 
+      .catch((err) =>
         cache.loading = false
         Common.beep()
 
-        Common.createDialog 
+        Common.createDialog
           type: 'warning'
           buttons: ['Ok']
           message: "Unable to connect to host #{data.host}"

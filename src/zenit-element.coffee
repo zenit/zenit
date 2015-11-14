@@ -14,7 +14,7 @@ class ZenitElement extends HTMLElement
       @zenitTitlebar.classList.add 'zenit-titlebar'
 
       ReactDOM.render(
-        React.createElement(require './components/titlebar'), 
+        React.createElement(require './components/titlebar'),
         @zenitTitlebar
       )
       @appendChild(@zenitTitlebar)
@@ -35,7 +35,7 @@ class ZenitElement extends HTMLElement
             name: 'Github Server (Live)'
           }
         ]
-      }), 
+      }),
       @zenitHeader
     )
     @appendChild(@zenitHeader)
