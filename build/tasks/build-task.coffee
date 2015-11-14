@@ -145,8 +145,12 @@ module.exports = (grunt) ->
       cp path.join('resources', 'win', 'zenit.js'), path.join(shellAppDir, 'resources', 'cli', 'zenit.js')
       cp path.join('resources', 'win', 'zpm.sh'), path.join(shellAppDir, 'resources', 'cli', 'zpm.sh')
 
+      cp path.join('resources', 'app-frame'), path.resolve(appDir, 'resources', 'app-frame')
+
+    ###
     if process.platform is 'linux'
-      #cp path.join('resources', 'app-icons', 'png'), path.join(buildDir, 'icons')
+      cp path.join('resources', 'app-icons', 'png'), path.join(buildDir, 'icons')
+    ###
 
     dependencies = ['compile', 'generate-module-cache', 'compile-packages-slug']
     dependencies.push('set-exe-icon') if process.platform is 'win32'
