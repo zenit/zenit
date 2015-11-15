@@ -1,7 +1,7 @@
 Reflux = require 'reflux'
 Actions = require '../actions/database'
 Common = require '../common/application'
-Executor = new (require('remote').require('../browser/application-executor.coffee'))
+Executor = new (require('remote').require('../browser/application-executor'))
 
 cache =
   loading: false
