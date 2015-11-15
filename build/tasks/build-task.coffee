@@ -16,16 +16,17 @@ module.exports = (grunt) ->
 
     if process.platform is 'darwin'
       cp 'electron/Electron.app', shellAppDir, filter: /default_app/
-      fs.renameSync path.join(shellAppDir, 'Contents', 'MacOS', 'Electron'), path.join(shellAppDir, 'Contents', 'MacOS', 'Zenit')
-      fs.renameSync path.join(shellAppDir, 'Contents', 'Frameworks', 'Electron Helper.app'), path.join(shellAppDir, 'Contents', 'Frameworks', 'Zenit Helper.app')
-      fs.renameSync path.join(shellAppDir, 'Contents', 'Frameworks', 'Atom Helper.app', 'Contents', 'MacOS', 'Electron Helper'), path.join(shellAppDir, 'Contents', 'Frameworks', 'Zenit Helper.app', 'Contents', 'MacOS', 'Zenit Helper')
+      cp(path.join(shellAppDir, 'Contents', 'MacOS', 'Electron'),
+         path.join(shellAppDir, 'Contents', 'MacOS', 'Zenit'))
+      rm path.join(shellAppDir, 'Contents', 'MacOS', 'Electron')
+    else if process.platform is 'win32'
+      cp 'electron', shellAppDir, filter: /default_app/
+      cp path.join(shellAppDir, 'electron.exe'), path.join(shellAppDir, 'zenit.exe')
+      rm path.join(shellAppDir, 'electron.exe')
     else
       cp 'electron', shellAppDir, filter: /default_app/
-
-      if process.platform is 'win32'
-        fs.renameSync path.join(shellAppDir, 'electron.exe'), path.join(shellAppDir, 'zenit.exe')
-      else
-        fs.renameSync path.join(shellAppDir, 'electron'), path.join(shellAppDir, 'zenit')
+      cp path.join(shellAppDir, 'electron'), path.join(shellAppDir, 'zenit')
+      rm path.join(shellAppDir, 'electron')
 
     mkdir appDir
 
