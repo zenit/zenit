@@ -1,4 +1,4 @@
-# Zenit
+# Zenit ![deps-status](https://david-dm.org/zenit/zenit.svg)
 
 **Zenit** is an open-source database administration tool built on the modern web with [Electron](https://github.com/atom/electron) and [Polymer](https://github.com/polymer/polymer). In addition to the features that zenit can offer, it can be easily extended.
 
