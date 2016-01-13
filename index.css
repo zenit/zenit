@@ -1,0 +1,19 @@
+/**
+ * Globals
+ */
+html,
+body {
+  cursor: default;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: rgb(245, 245, 245);
+  
+  font-family: 'Roboto', 'Droid Sans', arial, sans-serif;
+  font-size: 15px;
+  direction: ltr;
+
+  -webkit-user-select: none;
+}
