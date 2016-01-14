@@ -1,0 +1,59 @@
+:host {
+  display: block;
+  padding-left: 230px;
+
+  --paper-toolbar-background: #673AB7;
+  --paper-tabs-selection-bar-color: #FF6D00;
+  --paper-tabs-selection-bar: {
+    height: 4px;
+  }
+  --paper-tab-content: {
+    font-weight: 500 !important;
+  }
+}
+
+paper-toolbar {
+  height: 110px;
+  /*@apply(--shadow-elevation-2dp);*/
+  
+  -webkit-app-region: drag;
+}
+
+paper-toolbar .bottom {
+  height: 33px;
+}
+
+paper-tabs paper-tab {
+  font-size: 17px;
+  font-weight: 100;
+
+  -webkit-app-region: no-drag;
+}
+
+paper-toolbar .top {
+  display: flex;
+  width: 100%;
+}
+
+paper-toolbar .top paper-icon-button {
+  -webkit-app-region: no-drag;
+}
+
+paper-toolbar .top .left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+paper-toolbar .top .left .title {
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+paper-toolbar .top paper-icon-button[icon="arrow-back"] {
+  margin-right: 12px;
+}
+
+.content-wrapper {
+  margin: 12px;
+}

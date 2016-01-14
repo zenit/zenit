@@ -23,7 +23,7 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   const protocol = electron.protocol; // Module to register custom protocols or incercept existing ones.
 
-  // Register vendor:// protocol
+  // Register vendor:// and internal:// protocols
   protocol.registerFileProtocol('vendor', function(request, callback) {
     let relativePath = path.normalize(request.url.substr(9));
     
@@ -31,6 +31,15 @@ app.on('ready', function() {
   }, function(error) {
     if (error)
       console.error('Failed to register vendor protocol');
+  });
+
+  protocol.registerFileProtocol('internal', function(request, callback) {
+    let relativePath = path.normalize(request.url.substr(9));
+    
+    callback(path.join(__dirname, 'internals', relativePath));
+  }, function(error) {
+    if (error)
+      console.error('Failed to register internal protocol');
   });
 
   // Create the browser window.

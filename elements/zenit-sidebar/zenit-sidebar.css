@@ -1,0 +1,39 @@
+:host {
+  position: fixed;
+  display: block;
+  background-color: #FFFFFF;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  height: 100%;
+  width: 230px;
+}
+
+.sidebar-wrapper {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 96px;
+}
+
+#logo {
+  border-bottom: 1px solid #e0e0e0;
+  display: block;
+  height: 86px;
+  padding: 12px 0 11px 24px;
+  position: relative;
+
+  -webkit-app-region: drag;
+}
+
+.resizable-pane {
+  position: fixed;
+  border-left: 1px solid #CFD8DC;
+  width: 4px;
+  display: flex;
+  height: 100%;
+  top: 0;
+  margin-left: 230px;
+  cursor: e-resize;
+}

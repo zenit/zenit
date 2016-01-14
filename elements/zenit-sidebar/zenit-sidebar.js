@@ -1,5 +1,5 @@
 (() => {
   Polymer({
-    is: 'zenit-navbar'
+    is: 'zenit-sidebar'
   });
 })();

@@ -1,0 +1,125 @@
+:host {
+  display: block;
+  position: relative;
+  background: #FAFAFA;
+  border-radius: 2px;
+
+  @apply(--shadow-elevation-2dp);
+}
+
+:host(.hidden) {
+  transition: none;
+  opacity: 0;
+}
+
+.header {
+  color: white;
+  background-color: #546E7A;
+  padding: 0 24px;
+  line-height: 56px;
+  font-size: 12px;
+  font-weight: 500;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+:host([narrow-viewport]) .header .description {
+  display: none;
+}
+
+:host(:not([narrow-viewport])) .header,
+:host(:not([narrow-viewport])) .row,
+:host(:not([narrow-viewport])) .row a {
+  @apply(--layout-horizontal);
+}
+:host([narrow-viewport]) .header,
+:host([narrow-viewport]) .row,
+:host([narrow-viewport]) .row a {
+  @apply(--layout-vertical);
+}
+
+.row {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.row:hover,
+.row.selected {
+  background-color: #FFFFFF;
+}
+
+.row .row-inner {
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 24px;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+:host(:not([narrow-viewport])) .row.hover .description {
+  padding-right: 120px;
+}
+
+.name,
+.description,
+.rows,
+.actions,
+.size {
+  font-weight: 100;
+  font-size: 15px;
+  min-width: 120px;
+  display: inline-flex;
+}
+
+.actions {
+  min-width: 215px;
+}
+
+.name .narrow {
+  display: none;
+}
+
+:host([narrow-viewport])  .name .narrow {
+  display: inline;
+}
+
+.row .description {
+  color: #757575;
+}
+
+:host(:not([narrow-viewport])) .row .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#actions {
+  padding: 16px 24px;
+}
+
+#actions paper-checkbox {
+  margin-right: 24px;
+}
+
+:host {
+  --paper-checkbox-unchecked-background-color: #FAFAFA;
+  --paper-checkbox-unchecked-color: #737373;
+  --paper-checkbox-checked-color: #FF6D00;
+  --paper-checkbox-checkmark-color: white;
+  --paper-checkbox-checked-ink-color: #737373;
+  --paper-checkbox-unchecked-ink-color: #FF6D00;
+  --paper-checkbox-label-color: #FF6D00;
+
+  --paper-button: {
+    padding: 0.5em 0.8em;
+    color: #FFFFFF;
+    background-color: #FF6D00;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  --paper-button-flat-keyboard-focus: {
+    font-weight: normal;
+  }
+}

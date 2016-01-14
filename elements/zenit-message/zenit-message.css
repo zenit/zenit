@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+paper-material {
+  padding: 12px;
+  background-color: #FFE082;
+  display: flex;
+  align-items: center;
+}
+
+iron-icon {
+  color: #37474F;
+  margin-right: 12px;
+}
+
+.title {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #37474F;
+}
+
+.text {
+  color: #37474F;
+}

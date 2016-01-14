@@ -1,0 +1,42 @@
+<link rel="import" href="chrome://resources/polymer/v1_0/polymer/polymer.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-tabs/paper-tabs.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../zenit-message/zenit-message.html">
+<link rel="import" href="../zenit-table/zenit-table.html">
+
+<dom-module id="zenit-content">
+  <link rel="import" type="css" href="zenit-content.css">
+
+  <template>
+    <paper-toolbar>
+      <div class="top">
+        <div class="left">
+          <paper-icon-button icon="arrow-back"></paper-icon-button>
+
+          <span class="title">Server: <span>phpMyAdmin demo</span></span>
+        </div>
+
+        <div class="right">
+          <paper-icon-button icon="help"></paper-icon-button>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <paper-tabs selected="0" noink>
+          <paper-tab>Structure</paper-tab>
+          <paper-tab>Query</paper-tab>
+        </paper-tabs>
+      </div>
+    </paper-toolbar>
+
+    <div class="content-wrapper">
+      <zenit-table elements="[[_filteredElements]]"></zenit-table>
+
+      <zenit-message text="Currently you are running an experimental version of this software, be aware of the issues." style="margin-top: 20px"></zenit-message>
+    </div>
+  </template>
+</dom-module>
+
+<script src="zenit-content.js"></script>

@@ -7,7 +7,7 @@
   }
   
   function init() {
-    process.versions.app = package.version;
+    process.app = package;
 
     ipc.on('blur', function() {
       document.body.classList.add('blur');

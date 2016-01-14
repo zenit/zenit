@@ -1,0 +1,36 @@
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-styles/paper-styles.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-button/paper-button.html">
+
+<dom-module id="zenit-table">
+  <link rel="import" type="css" href="zenit-table.css">
+
+  <template>
+    <iron-media-query query="(max-width: 640px)" query-matches="{{narrowViewport}}"></iron-media-query>
+
+    <div class="header">
+      <div class="name">Name <span class="narrow">/ Actions</span></div>
+      <div class="actions">Actions</div>
+      <div class="rows">Rows</div>
+      <div class="size">Size</div>
+    </div>
+
+    <template is="dom-repeat" items="[[elements]]">
+      <div class="row" data-index$="[[index]]">
+        <div class="row-inner">
+          <div class="name"><paper-checkbox>[[item.name]]</paper-checkbox></div>
+          <div class="description">[[item.description]]</div>
+        </div>
+      </div>
+    </template>
+
+    <div id="actions">
+      <paper-checkbox style="cursor: pointer">Check all</paper-checkbox>
+
+      <paper-button>Print view</paper-button>
+      <paper-button>Data dictionary</paper-button>
+    </div>
+  </template>
+</dom-module>
+
+<script src="zenit-table.js"></script>
