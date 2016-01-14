@@ -1,0 +1,21 @@
+<link rel="import" href="chrome://resources/polymer/v1_0/polymer/polymer.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/iron-icons/iron-icons.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-material/paper-material.html">
+
+<dom-module id="zenit-message">
+  <link rel="import" type="css" href="zenit-message.css">
+
+  <template>
+    <paper-material elevation="1">
+      <iron-icon icon="{{icon}}"></iron-icon>
+
+      <template is="dom-if" if="{{title}}">
+        <span class="title"><span>{{title}}</span>:</span>
+      </template>
+
+      <span class="text">{{text}}</span>
+    </paper-material>
+  </template>
+</dom-module>
+
+<script src="zenit-message.js"></script>

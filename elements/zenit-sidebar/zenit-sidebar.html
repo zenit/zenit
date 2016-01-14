@@ -1,0 +1,30 @@
+<link rel="import" href="chrome://resources/polymer/v1_0/polymer/polymer.html">
+
+<dom-module id="zenit-sidebar">
+  <link rel="import" type="css" href="zenit-sidebar.css">
+
+  <template>
+    <div class="sidebar-wrapper">
+      <span id="logo">
+        <label class="switcher-label">Current server:</label>
+
+        <select id="switcher">
+          <option>phpMyAdmin Demo</option>
+          <option>My opts</option>
+        </select>
+      </span>
+
+      <nav>
+        Nav content!
+      </nav>
+
+      <div class="legal">
+        <p class="copyright">Iegor Azuaga © MIT License</p>
+      </div>
+    </div>
+    
+    <span class="resizable-pane" on-track="_handleResize"></span>
+  </template>
+</dom-module>
+
+<script src="zenit-sidebar.js"></script>

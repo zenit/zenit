@@ -1,0 +1,26 @@
+/**
+ * Globals
+ */
+html,
+body {
+  cursor: default;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: #ECEFF1;
+  
+  font-family: 'Roboto', 'Droid Sans', arial, sans-serif;
+  font-size: 15px;
+  direction: ltr;
+
+  display: flex;
+  flex-direction: column;
+
+  -webkit-user-select: none;
+}
+
+body.blur {
+  -webkit-filter: grayscale(20%);
+}
