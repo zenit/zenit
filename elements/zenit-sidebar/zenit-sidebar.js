@@ -1,5 +1,9 @@
 (() => {
   Polymer({
-    is: 'zenit-sidebar'
+    is: 'zenit-sidebar',
+
+    _handleResize(e) {
+      // TODO: Implement resize
+    }
   });
 })();
