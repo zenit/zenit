@@ -2,7 +2,7 @@
   Polymer({
     is: 'zenit-sidebar',
 
-    _handleResize(e) {
+    _handleResize() {
       // TODO: Implement resize
     }
   });

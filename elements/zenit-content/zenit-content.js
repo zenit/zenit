@@ -8,8 +8,8 @@
 
     ready() {
       this._filteredElements = [
-        { name: 'id', description: 'lel' },
-        { name: 'username', description: 'lel' }
+        {name: 'id', description: 'lel'},
+        {name: 'username', description: 'lel'}
       ];
     }
   });

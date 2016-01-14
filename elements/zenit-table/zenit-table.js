@@ -32,7 +32,7 @@
     _tap(e) {
       var sourceEvent = e.detail.sourceEvent;
       var A = this._findAncestor(e.target, function(node) {
-        return node != this && node.tagName !== 'A';
+        return node !== this && node.tagName !== 'A';
       });
 
       if (A && A.tagName === 'A' && A.href.indexOf(location.host) > 0) {
@@ -47,10 +47,10 @@
 
     _mouseOver(e) {
       var row = this._findAncestor(e.target, function(node) {
-        return node != this && !node.classList.contains('row') && node.id !== 'actions';
+        return node !== this && !node.classList.contains('row') && node.id !== 'actions';
       });
       if (row && row.classList.contains('row')) {
-        if (this._currentRowIndex != row.dataset.index) {
+        if (this._currentRowIndex !== row.dataset.index) {
           this._hideActions();
           this._showActions(row, row.dataset.index);
         }
@@ -96,7 +96,7 @@
     },
 
     _elementLink(name) {
-      return "/elements/" + name;
+      return '/elements/' + name;
     },
 
     _elementsChanged() {
@@ -106,7 +106,7 @@
       }, 1);
     },
     
-     _layoutIfNeeded(el) {
+    _layoutIfNeeded(el) {
       return el.offsetTop;
     }
   });
