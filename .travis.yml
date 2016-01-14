@@ -24,11 +24,11 @@ script:
   - npm run build:darwin
 
 before_deploy:
-  - zip -r Chrome-win32-ia32 ./bin/Chrome-win32-ia32/
-  - zip -r Chrome-win32-x64 ./bin/Chrome-win32-x64/
-  - zip -r Zenit-linux-ia32 ./bin/Zenit-linux-ia32/
-  - zip -r Zenit-linux-x64 ./bin/Zenit-linux-x64/
-  - zip -r Zenit-darwin-x64 ./bin/Zenit-darwin-x64/
+  - zip -r Chrome-win32-ia32 bin/Chrome-win32-ia32/
+  - zip -r Chrome-win32-x64 bin/Chrome-win32-x64/
+  - zip -r Zenit-linux-ia32 bin/Zenit-linux-ia32/
+  - zip -r Zenit-linux-x64 bin/Zenit-linux-x64/
+  - zip -r Zenit-darwin-x64 bin/Zenit-darwin-x64/
 
 cache:
   directories:
