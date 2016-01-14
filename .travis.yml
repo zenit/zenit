@@ -1,6 +1,6 @@
 branches:
   only:
-    - release
+    - master
 
 matrix:
   include:
@@ -59,4 +59,4 @@ deploy:
     - Zenit-darwin-x64.zip
   skip_cleanup: true
   on:
-    branch: release
+    tags: true
