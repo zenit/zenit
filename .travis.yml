@@ -23,9 +23,12 @@ script:
   - npm run build:win32
   - npm run build:darwin
 
-after_script:
+before_deploy:
   - 7z a Chrome-win32-ia32.zip ./bin/Chrome-win32-ia32/
   - 7z a Chrome-win32-x64.zip ./bin/Chrome-win32-x64/
+  - 7z a Zenit-linux-ia32.zip ./bin/Zenit-linux-ia32/
+  - 7z a Zenit-linux-x64.zip ./bin/Zenit-linux-x64/
+  - 7z a Zenit-darwin-x64.zip ./bin/Zenit-darwin-x64/
 
 cache:
   directories:
@@ -42,6 +45,7 @@ addons:
     - build-essential
     - git
     - fakeroot
+    - wine
 
 deploy:
   provider: releases
@@ -50,6 +54,9 @@ deploy:
   file:
     - Chrome-win32-ia32.zip
     - Chrome-win32-x64.zip
+    - Zenit-linux-ia32.zip
+    - Zenit-linux-x64.zip
+    - Zenit-darwin-x64.zip
   skip_cleanup: true
   on:
     tags: true
