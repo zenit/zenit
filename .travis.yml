@@ -59,4 +59,4 @@ deploy:
     - Zenit-darwin-x64.zip
   skip_cleanup: true
   on:
-    tags: true
+    tags: false
