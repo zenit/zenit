@@ -16,14 +16,14 @@ install:
 before_script:
   - chmod +x ./scripts/build.js
   - npm install
-  - npm test
 
 script:
+  - npm test
+
+before_deploy:
   - npm run build:linux
   - npm run build:win32
   - npm run build:darwin
-
-before_deploy:
   - zip -r Chrome-win32-ia32 . -i bin/Chrome-win32-ia32/
   - zip -r Chrome-win32-x64 . -i bin/Chrome-win32-x64/
   - zip -r Zenit-linux-ia32 . -i bin/Zenit-linux-ia32/
