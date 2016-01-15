@@ -1,10 +1,10 @@
-<div align="center">
+<div>
   <a href="http://github.com/flyjs">
     <img src="https://drive.google.com/uc?export=download&id=0B9WchF8WhEn9bjAxaGxKWko4d2s"> 
   </a>
 </div>
   
-<p align="center">
+<p>
   <a href="https://travis-ci.org/zenit/zenit">
     <img src="https://travis-ci.org/zenit/zenit.svg?branch=master"
       alt="Build Status">
@@ -15,7 +15,6 @@
       alt="Dependencies status">
   </a>
 </p>
-- - - -
 
 :warning: This is currently under extremely active development, and you probably shouldn't use it unless you like broken software.
 
