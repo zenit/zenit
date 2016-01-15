@@ -48,6 +48,22 @@
   -webkit-app-region: no-drag;
 }
 
+.divider {
+  height: 17px;
+  background-color: #F0F0F0;
+  display: flex;
+  border-bottom: 1px solid #DFDFE1;
+  align-items: center;
+}
+
+.divider span {
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 nav {
   padding: 10px; /* FIXME */
   overflow: hidden;
