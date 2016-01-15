@@ -152,6 +152,8 @@ nav ul li.new .block i {
 
 nav ul li.new .block b {
   left: 0.7em;
+  min-width: 11px;
+  width: 11px;
 }
 
 nav ul li.new .block .expander {
