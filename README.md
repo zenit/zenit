@@ -1,4 +1,4 @@
-<center><img src="https://drive.google.com/uc?export=download&id=0B9WchF8WhEn9bjAxaGxKWko4d2s" height="200"></center> 
+<center><img src="https://drive.google.com/uc?export=download&id=0B9WchF8WhEn9bjAxaGxKWko4d2s"></center> 
 
 [![Build Status](https://travis-ci.org/zenit/zenit.svg?branch=master)](https://travis-ci.org/zenit/zenit)
 [![deps-status](https://david-dm.org/zenit/zenit/dev-status.svg)](https://github.com/zenit/zenit/blob/master/package.json)
