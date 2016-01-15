@@ -5,6 +5,25 @@
   border-radius: 2px;
 
   @apply(--shadow-elevation-2dp);
+
+  --paper-checkbox-unchecked-background-color: #FAFAFA;
+  --paper-checkbox-unchecked-color: #737373;
+  --paper-checkbox-checked-color: #FF6D00;
+  --paper-checkbox-checkmark-color: white;
+  --paper-checkbox-checked-ink-color: #737373;
+  --paper-checkbox-unchecked-ink-color: #FF6D00;
+  --paper-checkbox-label-color: #FF6D00;
+
+  --paper-button: {
+    padding: 0.5em 0.8em;
+    color: #FFFFFF;
+    background-color: #FF6D00;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  --paper-button-flat-keyboard-focus: {
+    font-weight: normal;
+  }
 }
 
 :host(.hidden) {
@@ -66,15 +85,30 @@
 .description,
 .rows,
 .actions,
-.size {
+.size,
+.type,
+.collation {
   font-weight: 100;
   font-size: 15px;
-  min-width: 120px;
+  min-width: 125px;
   display: inline-flex;
 }
 
 .actions {
-  min-width: 215px;
+  min-width: 318px;
+}
+
+.rows {
+  align-items: center;
+
+  min-width: 100px;
+}
+
+.rows iron-icon {
+  margin-left: 6px;
+
+  --iron-icon-width: 17px;
+  --iron-icon-height: 17px;
 }
 
 .name .narrow {
@@ -85,7 +119,18 @@
   display: inline;
 }
 
-.row .description {
+.row .actions,
+.row .size {
+  color: #263238;
+  font-weight: 500;
+}
+
+.row .actions {
+  align-items: center;
+  display: inline-block;
+}
+
+.row .rows {
   color: #757575;
 }
 
@@ -103,23 +148,6 @@
   margin-right: 24px;
 }
 
-:host {
-  --paper-checkbox-unchecked-background-color: #FAFAFA;
-  --paper-checkbox-unchecked-color: #737373;
-  --paper-checkbox-checked-color: #FF6D00;
-  --paper-checkbox-checkmark-color: white;
-  --paper-checkbox-checked-ink-color: #737373;
-  --paper-checkbox-unchecked-ink-color: #FF6D00;
-  --paper-checkbox-label-color: #FF6D00;
-
-  --paper-button: {
-    padding: 0.5em 0.8em;
-    color: #FFFFFF;
-    background-color: #FF6D00;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  }
-
-  --paper-button-flat-keyboard-focus: {
-    font-weight: normal;
-  }
+iron-icon[icon="star"] {
+  color: #B0BEC5;
 }

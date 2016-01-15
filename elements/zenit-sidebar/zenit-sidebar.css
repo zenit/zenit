@@ -9,6 +9,9 @@
 
   height: 100%;
   width: 230px;
+
+  --iron-icon-width: 18px;
+  --iron-icon-height: 18px;
 }
 
 .sidebar-wrapper {
@@ -18,8 +21,10 @@
 }
 
 #logo {
+  display: flex;
+  align-items: center;
+
   border-bottom: 1px solid #e0e0e0;
-  display: block;
   height: 86px;
   padding: 12px 24px 11px 24px;
   position: relative;
@@ -36,9 +41,105 @@
   height: 31px;
   outline: none;
   border-color: #D1DADD;
+  border-radius: 2px;
   margin-top: 5px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
 
   -webkit-app-region: no-drag;
+}
+
+nav {
+  padding: 10px; /* FIXME */
+  overflow: hidden;
+  overflow-y: visible;
+}
+
+nav ul {
+  clear: both;
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+nav ul li {
+  white-space: nowrap;
+  padding-bottom: 4px;
+  clear: both;
+  min-height: 16px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+nav ul li a {
+  position: relative;
+  z-index: 100;
+  line-height: 2em;
+  height: 1.5em;
+  padding-left: 1.2em;
+  color: #37474F;
+  text-decoration: none;
+}
+
+nav ul li .block {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 16px;
+  min-height: 16px;
+  float: left;
+}
+
+nav ul li .block a {
+  position: absolute;
+  padding-left: 0.2em;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  text-decoration: none;
+}
+
+nav ul li .block .expander {
+  color: #FF6D00;
+}
+
+nav ul li .block i,
+nav ul li .block b {
+  width: 1em;
+  height: 1.7em;
+  min-width: 16px;
+  min-height: 8px;
+  position: absolute;
+  bottom: 0.7em;
+  left: 0.75em;
+  z-index: 0;
+}
+
+nav ul li .block i {
+  display: block;
+  border-left: 1px solid #CFD8DC;
+  position: relative;
+  z-index: 0;
+  height: 1.4em;
+}
+
+nav ul li .block b {
+  display: block;
+  height: 0.75em;
+  top: 0.3em;
+  left: 1.2em;
+  border-bottom: 1px solid #CFD8DC;
+}
+
+nav ul li.new .block i {
+  height: 2.3em;
+}
+
+nav ul li.new .block b {
+  left: 0.7em;
+}
+
+nav ul li.new .block .expander {
+  left: 15px;
 }
 
 .legal {
@@ -49,7 +150,7 @@
   height: 96px;
   line-height: 24px;
   padding: 0;
-  margin-bottom: 46px;
+  margin-bottom: 47px;
   position: absolute;
   width: 100%;
 }

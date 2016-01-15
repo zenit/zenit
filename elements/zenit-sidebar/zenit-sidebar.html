@@ -1,4 +1,5 @@
 <link rel="import" href="chrome://resources/polymer/v1_0/polymer/polymer.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/iron-icons/iron-icons.html">
 
 <dom-module id="zenit-sidebar">
   <link rel="import" type="css" href="zenit-sidebar.css">
@@ -6,16 +7,56 @@
   <template>
     <div class="sidebar-wrapper">
       <span id="logo">
-        <label class="switcher-label">Current server:</label>
+        <div class="logo-inner">
+          <label class="switcher-label">Current server:</label>
 
-        <select id="switcher">
-          <option>phpMyAdmin Demo</option>
-          <option>My opts</option>
-        </select>
+          <select id="switcher">
+            <option>phpMyAdmin Demo</option>
+            <option>My opts</option>
+          </select>
+        </div>
       </span>
 
       <nav>
-        Nav content!
+        <ul>
+          <li class="database new">
+            <div class="block">
+              <i></i>
+              <b></b>
+
+              <a class="expander" href="#">
+                <iron-icon icon="add-box"></iron-icon>
+              </a>
+            </div>
+
+            <a href="#" title="New database" on-click="_handleDatabasePrompt">New database</a>
+          </li>
+
+          <li class="database">
+            <div class="block">
+              <i></i>
+              <b></b>
+
+              <a class="expander" href="#">
+                <iron-icon icon="add-circle"></iron-icon>
+              </a>
+            </div>
+
+            <a href="#" title="Structure">mysql</a>
+          </li>
+
+          <li class="database">
+            <div class="block">
+              <i></i>
+              <b></b>
+
+              <a class="expander" href="#">
+                <iron-icon icon="add-circle"></iron-icon>
+              </a>
+            </div>
+            <a href="#" title="Structure">information_schema</a>
+          </li>
+        </ul>
       </nav>
 
       <div class="legal">

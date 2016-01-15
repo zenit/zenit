@@ -1,6 +1,7 @@
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-styles/paper-styles.html">
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-button/paper-button.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/iron-icon/iron-icon.html">
 
 <dom-module id="zenit-table">
   <link rel="import" type="css" href="zenit-table.css">
@@ -11,7 +12,8 @@
     <div class="header">
       <div class="name">Name <span class="narrow">/ Actions</span></div>
       <div class="actions">Actions</div>
-      <div class="rows">Rows</div>
+      <div class="rows">Rows <iron-icon icon="help"></iron-icon></div>
+      <div class="type">Type</div>
       <div class="size">Size</div>
     </div>
 
@@ -19,7 +21,10 @@
       <div class="row" data-index$="[[index]]">
         <div class="row-inner">
           <div class="name"><paper-checkbox>[[item.name]]</paper-checkbox></div>
-          <div class="description">[[item.description]]</div>
+          <div class="actions"><iron-icon icon="star"></iron-icon> Browse Structure Search Insert Empty Drop</div>
+          <div class="rows">9</div>
+          <div class="type">InnoDB</div>
+          <div class="size">9 KiB</div>
         </div>
       </div>
     </template>
