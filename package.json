@@ -1,7 +1,7 @@
 {
   "name": "zenit",
   "productName": "Zenit",
-  "version": "0.0.32-dev",
+  "version": "0.0.31-dev",
   "description": "An extensible database administration tool",
   "main": "browser.js",
   "author": "Iegor Azuaga <dextrackmedia@gmail.com>",
