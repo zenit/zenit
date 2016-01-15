@@ -1,5 +1,3 @@
-var dialog = require('remote').dialog;
-
 (() => {
   Polymer({
     is: 'zenit-sidebar',
