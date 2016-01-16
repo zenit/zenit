@@ -1,5 +1,5 @@
 <div>
-  <a href="http://github.com/flyjs">
+  <a href="http://github.com/zenit/zenit">
     <img src="https://drive.google.com/uc?export=download&id=0B9WchF8WhEn9bjAxaGxKWko4d2s"> 
   </a>
 </div>
