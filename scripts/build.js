@@ -16,9 +16,11 @@ var opts = {
 };
 
 if (platform == 'win32') {
-  opts.icon = path.join(__dirname, '..', 'resources', 'chrome.ico');
+  opts.icon = path.join(__dirname, '..', 'resources', 'app-icons', 'zenit.ico');
+} else if (platform == 'darwin') {
+  opts.icon = path.join(__dirname, '..', 'resources', 'app-icons', 'zenit.icns');
 } else {
-  opts.icon = path.join(__dirname, '..', 'resources', 'chrome.icns');
+  opts.icon = path.join(__dirname, '..', 'resources', 'app-icons', 'zenit.png');
 }
 
 packager(opts, function(err, path) {
