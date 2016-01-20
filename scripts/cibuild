@@ -2,12 +2,12 @@
 var zipdir = require('zip-dir');
 var path = require('path');
 
-zipdir(path.join(__dirname, 'bin', 'Chrome-win32-ia32'), { saveTo: 'Chrome-win32-ia32.zip' }, function (err, buffer) {
+zipdir(path.join(__dirname, 'bin', 'Zenit-win32-ia32'), { saveTo: 'Zenit-win32-ia32.zip' }, function (err, buffer) {
   // `buffer` is the buffer of the zipped file
   console.log('App win32-ia32 zipped!');
 });
 
-zipdir(path.join(__dirname, 'bin', 'Chrome-win32-x64'), { saveTo: 'Chrome-win32-x64.zip' }, function (err, buffer) {
+zipdir(path.join(__dirname, 'bin', 'Zenit-win32-x64'), { saveTo: 'Zenit-win32-x64.zip' }, function (err, buffer) {
   // `buffer` is the buffer of the zipped file
   console.log('App win32-x64 zipped!');
 });
