@@ -1,3 +1,5 @@
+'use strict';
+
 (() => {
   Polymer({
     is: 'zenit-content',
@@ -12,6 +14,10 @@
         {name: 'shop_items', description: 'lel'},
         {name: 'items_data', description: 'lel'},
       ];
+    },
+
+    _openInfoDialog() {
+      document.querySelector('zenit-dialogs').open('info');
     }
   });
 })();

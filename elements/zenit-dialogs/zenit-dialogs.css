@@ -1,0 +1,36 @@
+paper-dialog {
+  max-height: none !important;
+}
+
+paper-dialog .title {
+  text-align: center;
+  color: rgba(0,0,0,0.87);
+}
+
+paper-dialog .body {
+  margin: 0;
+  padding: 24px;
+}
+
+paper-dialog paper-button {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.87);
+  line-height: 15px;
+
+  --paper-button-flat-keyboard-focus: {
+    font-weight: 500;
+  }
+}
+
+paper-dialog paper-button:hover {
+  background-color: #eeeeee;
+}
+
+paper-dialog paper-button[dialog-confirm] {
+  color: #F44336;
+}
+
+paper-dialog paper-button.create {
+  color: #FF6D00;
+}

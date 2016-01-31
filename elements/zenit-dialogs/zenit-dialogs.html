@@ -1,0 +1,34 @@
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-dialog/paper-dialog.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-input/paper-input.html">
+
+<dom-module id="zenit-dialogs">
+  <link rel="import" type="css" href="zenit-dialogs.css">
+
+  <template>
+    <paper-dialog id="info" modal>
+      <h2 class="title">phpMyAdmin information</h2>
+
+      <p class="body">Server: <span>127.0.0.1</span></p>
+
+      <div class="buttons">
+        <paper-button dialog-confirm>Delete</paper-button>
+        <paper-button dialog-dismiss>Close</paper-button>
+      </div>
+    </paper-dialog>
+
+    <paper-dialog id="create-database" modal>
+      <h2 class="title">Create database</h2>
+
+      <p class="body">
+        <paper-input label="Database name"></paper-input>
+      </p>
+
+      <div class="buttons">
+        <paper-button dialog-dismiss>Close</paper-button>
+        <paper-button class="create" dialog-confirm>Create</paper-button>
+      </div>
+    </paper-dialog>
+  </template>
+</dom-module>
+
+<script src="zenit-dialogs.js"></script>
