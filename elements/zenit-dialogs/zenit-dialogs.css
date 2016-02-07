@@ -31,6 +31,13 @@ paper-dialog paper-button[dialog-confirm] {
   color: #F44336;
 }
 
-paper-dialog paper-button.create {
-  color: #FF6D00;
+#create-database paper-button[dialog-confirm] {
+  color: #FFF;
+  background-color: #FF6D00;
+}
+
+#create-database paper-input {
+  --paper-input-container-underline-focus: {
+    background: #673AB7;
+  }
 }
