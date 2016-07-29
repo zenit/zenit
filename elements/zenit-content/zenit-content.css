@@ -57,3 +57,50 @@ paper-toolbar .top paper-icon-button[icon="arrow-back"] {
 .content-wrapper {
   margin: 12px;
 }
+
+.create-table {
+  margin-top: 20px;
+  background-color: #FAFAFA;
+  padding: 16px 12px;
+
+  @apply(--shadow-elevation-2dp);
+}
+
+.create-table .title {
+  font-size: 17px;
+  color: #673ab7;
+}
+
+.create-table .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.create-table paper-input {
+  display: inline-block;
+  margin-right: 20px;
+  outline: none;
+
+  --paper-input-container-underline: {
+    margin-top: 2px;
+    background: rgba(115, 115, 115, .4);
+    outline: none;
+  };
+
+  --paper-input-container-underline-focus: {
+    margin-top: 2px;
+  };
+}
+
+.create-table #table-name {
+  width: 310px;
+}
+
+.create-table paper-button {
+  padding: 0.6em 0.8em;
+  color: #FFFFFF;
+  background-color: #FF6D00;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin-bottom: 5px;
+}

@@ -69,7 +69,6 @@
 
 .row .row-inner {
   box-sizing: border-box;
-  cursor: pointer;
   overflow: hidden;
   width: 100%;
   padding: 10px 24px;
@@ -95,7 +94,13 @@
 }
 
 .actions {
-  min-width: 318px;
+  min-width: 355px;
+}
+
+.actions > span {
+  position: relative;
+  top: 2px;
+  padding: 0 2px;
 }
 
 .rows {

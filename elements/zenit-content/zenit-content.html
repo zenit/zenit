@@ -2,6 +2,7 @@
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-tabs/paper-tabs.html">
 <link rel="import" href="chrome://resources/polymer/v1_0/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-input/paper-input.html">
 
 <link rel="import" href="../zenit-message/zenit-message.html">
 <link rel="import" href="../zenit-table/zenit-table.html">
@@ -37,6 +38,21 @@
 
     <div class="content-wrapper">
       <zenit-table elements="[[_filteredElements]]"></zenit-table>
+
+      <div class="create-table">
+        <div class="title">Create table</div>
+
+        <div class="content">
+          <div id="start">
+            <paper-input id="table-name" label="Table name"></paper-input>
+            <paper-input id="columns-number" label="Number of columns"></paper-input>
+          </div>
+
+          <div id="end">
+            <paper-button>Go</paper-button>
+          </div>
+        </div>
+      </div>
 
       <zenit-message text="Currently you are running an experimental version of this software, be aware of the issues." style="margin-top: 20px"></zenit-message>
     </div>

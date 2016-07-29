@@ -1,12 +1,34 @@
 :host {
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-bottom: 0;
   height: 32px;
   align-items: center;
   background-color: #5529a2;
   -webkit-app-region: drag;
+}
+
+#start,
+#end {
+  display: flex;
+  flex-direction: row;
+}
+
+#start {
+  padding-left: 15px;
+  color: rgba(255, 255, 255, .8);
+}
+
+#start .item {
+  transition: background-color 0.1s;
+  padding: 2px 4px;
+  border-radius: 1.5px;
+  -webkit-app-region: no-drag;
+}
+
+#start .item:hover {
+  background-color: rgba(255, 255, 255, 0.129412);
 }
 
 .button {
