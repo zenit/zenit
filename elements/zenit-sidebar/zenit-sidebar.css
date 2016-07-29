@@ -88,6 +88,7 @@ nav ul li {
 
 nav ul li a {
   position: relative;
+  top: 1px;
   z-index: 100;
   line-height: 2em;
   height: 1.5em;

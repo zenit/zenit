@@ -7,6 +7,7 @@
 
     <!-- Polymer imports -->
     <script>Polymer = {dom: 'shadow'};</script>
+    <link rel="import" href="elements/zenit-topbar/zenit-topbar.html">
     <link rel="import" href="elements/zenit-dialogs/zenit-dialogs.html">
     <link rel="import" href="elements/zenit-sidebar/zenit-sidebar.html">
     <link rel="import" href="elements/zenit-content/zenit-content.html">
@@ -22,6 +23,8 @@
   <body>
     <zenit-dialogs></zenit-dialogs>
     <zenit-sidebar></zenit-sidebar>
-    <zenit-content></zenit-content>
+    <zenit-content>
+      <zenit-topbar id="topbar"></zenit-topbar>
+    </zenit-content>
   </body>
 </html>

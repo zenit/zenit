@@ -1,0 +1,36 @@
+:host {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 0;
+  height: 32px;
+  align-items: center;
+  background-color: #5529a2;
+  -webkit-app-region: drag;
+}
+
+.button {
+  padding: 7px 15px;
+  transition: background-color 0.1s;
+  -webkit-app-region: no-drag;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.129412);
+}
+
+.button.close:hover {
+  background-color: rgb(232, 17, 35);
+}
+
+.button.close:hover > svg > * {
+  fill: #fff;
+}
+
+.button:active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.button.close:active {
+  background-color: rgba(232, 17, 35, .85);
+}
